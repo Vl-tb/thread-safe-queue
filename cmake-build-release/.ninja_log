@@ -1,0 +1,27 @@
+# ninja log v5
+1	539	1647707364596265240	CMakeFiles/integrate_task_2.dir/sources/function.cpp.o	30e129f77bb11ca0
+0	3940	1647707367996265476	CMakeFiles/integrate_task_2.dir/main.cpp.o	671bcf30eb35ade7
+1	4218	1647707368275265495	CMakeFiles/integrate_task_2.dir/sources/single_thread.cpp.o	f73b2c5d23ab7a95
+2	4449	1647707368506265511	CMakeFiles/integrate_task_2.dir/sources/multi_threads.cpp.o	4e8cd95bded4d94
+1	4753	1647707368810265532	CMakeFiles/integrate_task_2.dir/options_parser/options_parser.cpp.o	b7ba5614b16a5e3d
+1	6756	1647707370813265671	CMakeFiles/integrate_task_2.dir/sources/parser.cpp.o	4ac91bb7eac2b98f
+6756	6886	1647707370943265680	integrate_task_2	92d2c69ee4f36773
+4	2672	1647707953833306041	CMakeFiles/integrate_task_2.dir/main.cpp.o	671bcf30eb35ade7
+2673	2761	1647707953921306047	integrate_task_2	92d2c69ee4f36773
+3	2391	1647708058561313292	CMakeFiles/integrate_task_2.dir/main.cpp.o	671bcf30eb35ade7
+2391	2473	1647708058643313298	integrate_task_2	92d2c69ee4f36773
+5	3928	1647708768842362474	CMakeFiles/integrate_task_2.dir/sources/single_thread.cpp.o	f73b2c5d23ab7a95
+5	4189	1647708769102362492	CMakeFiles/integrate_task_2.dir/main.cpp.o	671bcf30eb35ade7
+6	4331	1647708769245362502	CMakeFiles/integrate_task_2.dir/sources/multi_threads.cpp.o	4e8cd95bded4d94
+5	7107	1647708772020362694	CMakeFiles/integrate_task_2.dir/sources/parser.cpp.o	4ac91bb7eac2b98f
+7107	7221	1647708772135362702	integrate_task_2	92d2c69ee4f36773
+4	2787	1647708819433365977	CMakeFiles/integrate_task_2.dir/main.cpp.o	671bcf30eb35ade7
+2787	2885	1647708819531365984	integrate_task_2	92d2c69ee4f36773
+3	2336	1647708864649369108	CMakeFiles/integrate_task_2.dir/main.cpp.o	671bcf30eb35ade7
+2337	2424	1647708864735369114	integrate_task_2	92d2c69ee4f36773
+3	3219	1647708878988370101	CMakeFiles/integrate_task_2.dir/main.cpp.o	671bcf30eb35ade7
+3219	3322	1647708879090370108	integrate_task_2	92d2c69ee4f36773
+7	2433	1647708968509376300	CMakeFiles/integrate_task_2.dir/main.cpp.o	671bcf30eb35ade7
+2433	2523	1647708968598376306	integrate_task_2	92d2c69ee4f36773
+3	2674	1647709324554400953	CMakeFiles/integrate_task_2.dir/main.cpp.o	671bcf30eb35ade7
+2674	2761	1647709324639400959	integrate_task_2	92d2c69ee4f36773

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="word_counter"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\cmake\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\opt\;CMake Files\..\..\..\..\..\opt\homebrew\;CMake Files\..\..\..\..\..\opt\homebrew\lib\;CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\;CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\Boost-1.76.0\;CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\boost_headers-1.76.0\;CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\boost_program_options-1.76.0\;CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\boost_system-1.76.0\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/local">
+				<Option working_dir="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 install/local"/>
+					<CompileFile command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/strip">
+				<Option working_dir="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 install/strip"/>
+					<CompileFile command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install">
+				<Option working_dir="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 install"/>
+					<CompileFile command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="list_install_components">
+				<Option working_dir="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 list_install_components"/>
+					<CompileFile command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="word_counter">
+				<Option output="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/word_counter" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add option="-DBOOST_PROGRAM_OPTIONS_DYN_LINK"/>
+					<Add option="-DBOOST_SYSTEM_DYN_LINK"/>
+					<Add directory="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/options_parser"/>
+					<Add directory="/opt/homebrew/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.5/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 word_counter"/>
+					<CompileFile command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="word_counter/fast">
+				<Option output="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/word_counter" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add option="-DBOOST_PROGRAM_OPTIONS_DYN_LINK"/>
+					<Add option="-DBOOST_SYSTEM_DYN_LINK"/>
+					<Add directory="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/options_parser"/>
+					<Add directory="/opt/homebrew/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.5/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 word_counter/fast"/>
+					<CompileFile command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/opt/homebrew/bin/gmake -j8 -f &quot;/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/includes/errors.h">
+			<Option target="word_counter"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/includes/files.h">
+			<Option target="word_counter"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/includes/parser.h">
+			<Option target="word_counter"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/main.cpp">
+			<Option target="word_counter"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/sources/files.cpp">
+			<Option target="word_counter"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/sources/parser.cpp">
+			<Option target="word_counter"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake/CompilerWarnings.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake/Errors.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake/PVS-Studio-conf.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake/Sanitizers.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake/Windows.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake/main-config.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/../../../../../opt/homebrew/lib/cmake/BoostDetectToolset-1.76.0.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/../../../../../opt/homebrew/lib/cmake/Boost-1.76.0/BoostConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\Boost-1.76.0\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/../../../../../opt/homebrew/lib/cmake/Boost-1.76.0/BoostConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\Boost-1.76.0\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/../../../../../opt/homebrew/lib/cmake/boost_headers-1.76.0/boost_headers-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\boost_headers-1.76.0\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/../../../../../opt/homebrew/lib/cmake/boost_headers-1.76.0/boost_headers-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\boost_headers-1.76.0\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/../../../../../opt/homebrew/lib/cmake/boost_program_options-1.76.0/boost_program_options-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\boost_program_options-1.76.0\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/../../../../../opt/homebrew/lib/cmake/boost_program_options-1.76.0/boost_program_options-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\boost_program_options-1.76.0\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/../../../../../opt/homebrew/lib/cmake/boost_program_options-1.76.0/libboost_program_options-variant-mt-shared.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\boost_program_options-1.76.0\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/../../../../../opt/homebrew/lib/cmake/boost_program_options-1.76.0/libboost_program_options-variant-mt-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\boost_program_options-1.76.0\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/../../../../../opt/homebrew/lib/cmake/boost_program_options-1.76.0/libboost_program_options-variant-shared.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\boost_program_options-1.76.0\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/../../../../../opt/homebrew/lib/cmake/boost_program_options-1.76.0/libboost_program_options-variant-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\boost_program_options-1.76.0\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/../../../../../opt/homebrew/lib/cmake/boost_system-1.76.0/boost_system-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\boost_system-1.76.0\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/../../../../../opt/homebrew/lib/cmake/boost_system-1.76.0/boost_system-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\boost_system-1.76.0\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/../../../../../opt/homebrew/lib/cmake/boost_system-1.76.0/libboost_system-variant-mt-shared.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\boost_system-1.76.0\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/../../../../../opt/homebrew/lib/cmake/boost_system-1.76.0/libboost_system-variant-mt-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\boost_system-1.76.0\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/../../../../../opt/homebrew/lib/cmake/boost_system-1.76.0/libboost_system-variant-shared.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\boost_system-1.76.0\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/../../../../../opt/homebrew/lib/cmake/boost_system-1.76.0/libboost_system-variant-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\boost_system-1.76.0\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

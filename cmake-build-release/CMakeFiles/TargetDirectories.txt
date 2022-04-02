@@ -1,0 +1,7 @@
+/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/CMakeFiles/install/local.dir
+/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/CMakeFiles/install/strip.dir
+/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/CMakeFiles/install.dir
+/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/CMakeFiles/list_install_components.dir
+/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/CMakeFiles/rebuild_cache.dir
+/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/CMakeFiles/edit_cache.dir
+/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/CMakeFiles/word_counter.dir
