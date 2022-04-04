@@ -1,1 +1,3 @@
-/Library/Developer/CommandLineTools/usr/bin/c++ -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/word_counter.dir/main.cpp.o CMakeFiles/word_counter.dir/sources/files.cpp.o CMakeFiles/word_counter.dir/sources/parser.cpp.o -o word_counter  /opt/homebrew/lib/libboost_program_options-mt.dylib /opt/homebrew/lib/libboost_system-mt.dylib 
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\word_counter.dir/objects.a
+C:\msys64\mingw64\bin\ar.exe qc CMakeFiles\word_counter.dir/objects.a @CMakeFiles\word_counter.dir\objects1.rsp
+C:\msys64\mingw64\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\word_counter.dir/objects.a -Wl,--no-whole-archive -o word_counter.exe -Wl,--out-implib,libword_counter.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\word_counter.dir\linklibs.rsp
