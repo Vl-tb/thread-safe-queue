@@ -2,11 +2,16 @@
 //// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 #include <iostream>
 #include <vector>
-#include <queue>
+#include <deque>
 #include <fstream>
+#include <thread>
 #include "includes/errors.h"
 #include "includes/files.h"
+#include "includes/mt_func.hpp"
 #include "includes/parser.h"
+
+#include "includes/my_mt_thread.hpp"
+
 
 namespace sys = std::filesystem;
 
@@ -32,9 +37,9 @@ int main(int argc, char* argv[]) {
     std::chrono::high_resolution_clock::time_point total_end;
 
     if (threads_n == 0){
-        std::queue<std::string>* chr;
-        std::queue<std::string> queue;
-        chr = &queue;
+        std::deque<std::string>* chr;
+        std::deque<std::string> deque;
+        chr = &deque;
 
         find_start = get_current_time_fenced();
         try{
@@ -53,13 +58,13 @@ int main(int argc, char* argv[]) {
         read_end = get_current_time_fenced();
 
         std::map<std::string, int> global;
-        int amount = queue.size();
+        int amount = deque.size();
 
         for(int i=0; i<amount; ++i){
-            std::map<std::string, int> local = split(&queue.front());
+            std::map<std::string, int> local = split(&deque.front());
 
             merge(local, &global);
-            queue.pop();
+            deque.pop_front();
         }
         total_end = get_current_time_fenced();
 
@@ -75,13 +80,48 @@ int main(int argc, char* argv[]) {
 
     }
     else{
-        //TODO Multithreading
+        size_t num_index_workers = threads_n - 2;
+        std::vector<std::thread> index_workers(num_index_workers);
+        my_mt_thread<std::string> filequ(100);
+        my_mt_thread<std::string> stringqu(200);
+
+        find_start = get_current_time_fenced();
+//        std::cout << to_us(find_start) << std::endl;
+        std::thread file_searcher_worker(extract_files_mt, indir, &filequ);
+
+//        total_start = get_current_time_fenced();
+//        read_start = get_current_time_fenced();
+//        std::thread file_reader_worker(read_files_mt, &filequ, &stringqu);
+
+//        my_mt_map<std::string, int> global;
+
+//        for (size_t i = 0; i < num_index_workers; i++) {
+//            index_workers.push_back(std::thread(index_work_mt, &stringqu, &global));
+//        }
+
+//        for (size_t i = 0; i < num_index_workers; i++){
+//            index_workers[i].join();
+//        }
+        file_searcher_worker.join();
+        find_end = get_current_time_fenced();
+//        file_reader_worker.join();
+
+//        std::vector<std::pair<std::string, int>> sorted;
+//        std::vector<std::pair<std::string, int>> sorted_1;
+//        sorted = sort_by_func(global.cast_to_map(), 1);
+//        sorted_1 = sort_by_func(global.cast_to_map(), 0);
+
+//        write_start = get_current_time_fenced();
+//        write(out_path_a, sorted);
+//        write(out_path_n, sorted_1);
+//        write_end = get_current_time_fenced();
+
     }
 
-    std::cout << "Total=" << to_us(total_end-total_start) << std::endl;
-    std::cout << "Reading=" << to_us(read_end-read_start) << std::endl;
+//    std::cout << "Total=" << to_us(total_end-total_start) << std::endl;
+//    std::cout << "Reading=" << to_us(read_end-read_start) << std::endl;
     std::cout << "Finding=" << to_us(find_end-find_start) << std::endl;
-    std::cout << "Writing=" << to_us(write_end-write_start);
+//    std::cout << "Writing=" << to_us(write_end-write_start);
 
     return 0;
 }

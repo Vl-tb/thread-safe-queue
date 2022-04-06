@@ -1,6 +1,7 @@
 #ifndef QUEUE_PARSER_H
 #define QUEUE_PARSER_H
 #include <boost/program_options.hpp>
+#include <filesystem>
 
 class config_options_t
 {

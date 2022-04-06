@@ -1,20 +1,23 @@
 #ifndef QUEUE_FILES_H
 #define QUEUE_FILES_H
 
-#include <queue>
+#include <deque>
 #include <map>
 #include <filesystem>
 #include <chrono>
 #include <atomic>
+
+
 #include "../includes/parser.h"
+#include "../includes/my_mt_thread.hpp"
 #include <boost/program_options.hpp>
 
 namespace sys = std::filesystem;
 
-void extract_files(const sys::path& path, std::queue<std::string>* queue);
-void read_files(std::queue<std::string>* queue);
+void extract_files(const sys::path& path, std::deque<std::string>* deque);
+void read_files(std::deque<std::string>* deque);
 bool key_check(const std::map<std::string,int>& map, const std::string& el);
-std::map<std::string, int> split(std::string* str);
+std::map<std::string, int> split(const std::string* str);
 void merge(const std::map<std::string, int>& local, std::map<std::string, int>* global);
 bool compare(const std::pair<std::string, int>& first, const std::pair<std::string, int>& second, int param);
 std::vector<std::pair<std::string, int>> sort_by_func(const std::map<std::string, int>& words, int method);
@@ -31,7 +34,7 @@ inline std::chrono::high_resolution_clock::time_point get_current_time_fenced()
 template <class D>
 long long to_us(const D &d)
 {
-    return std::chrono::duration_cast<std::chrono::microseconds>(d).count();
+    return std::chrono::duration_cast<std::chrono::milliseconds>(d).count();
 }
 
 #endif //QUEUE_FILES_H
