@@ -28,22 +28,6 @@ boost/program_options.hpp
 boost/program_options.hpp
 -
 
-/Users/vladprotsenko/Documents/ACS/thread-safe-queue/main.cpp
-iostream
--
-vector
--
-queue
--
-fstream
--
-includes/errors.h
-/Users/vladprotsenko/Documents/ACS/thread-safe-queue/includes/errors.h
-includes/files.h
-/Users/vladprotsenko/Documents/ACS/thread-safe-queue/includes/files.h
-includes/parser.h
-/Users/vladprotsenko/Documents/ACS/thread-safe-queue/includes/parser.h
-
 /Users/vladprotsenko/Documents/ACS/thread-safe-queue/sources/files.cpp
 iostream
 -
@@ -63,20 +47,6 @@ algorithm
 /Users/vladprotsenko/Documents/ACS/thread-safe-queue/includes/errors.h
 ../includes/files.h
 /Users/vladprotsenko/Documents/ACS/thread-safe-queue/includes/files.h
-
-/Users/vladprotsenko/Documents/ACS/thread-safe-queue/sources/parser.cpp
-boost/program_options.hpp
--
-iostream
--
-fstream
--
-iterator
--
-../includes/errors.h
-/Users/vladprotsenko/Documents/ACS/thread-safe-queue/includes/errors.h
-../includes/parser.h
-/Users/vladprotsenko/Documents/ACS/thread-safe-queue/includes/parser.h
 
 /opt/homebrew/include/boost/any.hpp
 boost/config.hpp

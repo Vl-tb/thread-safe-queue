@@ -14,10 +14,10 @@ namespace sys = std::filesystem;
 void extract_files(const sys::path& path, std::queue<std::string>* queue);
 void read_files(std::queue<std::string>* queue);
 bool key_check(const std::map<std::string,int>& map, const std::string& el);
-std::map<std::string, int> split(std::string* str);
+const std::map<std::string, int>& split(std::string* str);
 void merge(const std::map<std::string, int>& local, std::map<std::string, int>* global);
 bool compare(const std::pair<std::string, int>& first, const std::pair<std::string, int>& second, int param);
-std::vector<std::pair<std::string, int>> sort_by_func(const std::map<std::string, int>& words, int method);
+const std::vector<std::pair<std::string, int>>& sort_by_func(const std::map<std::string, int>& words, int method);
 void write(const std::string& name, const std::vector<std::pair<std::string, int>>& words);
 
 inline std::chrono::high_resolution_clock::time_point get_current_time_fenced()

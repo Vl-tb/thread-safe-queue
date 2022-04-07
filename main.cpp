@@ -56,15 +56,15 @@ int main(int argc, char* argv[]) {
         int amount = queue.size();
 
         for(int i=0; i<amount; ++i){
-            std::map<std::string, int> local = split(&queue.front());
+            const std::map<std::string, int>& local = split(&queue.front());
 
             merge(local, &global);
             queue.pop();
         }
         total_end = get_current_time_fenced();
 
-        std::vector<std::pair<std::string, int>> sorted;
-        std::vector<std::pair<std::string, int>> sorted_1;
+        const std::vector<std::pair<std::string, int>>& sorted;
+        const std::vector<std::pair<std::string, int>>& sorted_1;
         sorted = sort_by_func(global, 1);
         sorted_1 = sort_by_func(global, 0);
 

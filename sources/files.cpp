@@ -43,13 +43,11 @@ bool key_check(const std::map<std::string,int> &map, const std::string& el){
     if(itr!=map.end()){
         return true;
     }
-    else{
-        return false;
-    }
+    return false;
 }
 
 
-std::map<std::string, int> split(std::string* str){
+const std::map<std::string, int>& split(std::string* str){
     unsigned long last = 0;
     std::map<std::string, int> words;
 
@@ -103,7 +101,7 @@ bool compare(const std::pair<std::string, int>& first, const std::pair<std::stri
     }
 }
 
-std::vector<std::pair<std::string, int>> sort_by_func(const std::map<std::string, int>& words, int method){
+const std::vector<std::pair<std::string, int>>& sort_by_func(const std::map<std::string, int>& words, int method){
     std::vector<std::pair<std::string, int>> sorted;
     for (auto pair: words){
         sorted.push_back(pair);
