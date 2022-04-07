@@ -15,8 +15,16 @@ After the compilation the binary file will be located in the `bin` directory.
 
 ### Usage
 
-<mark>Note: if your project needs or generates any data, media and so on -- put them
-into the data folder</mark> 
+To run the program itself:
+- go to the `bin` directory with the executable `word_counter`
+- run `./word_counter ../data/config.cfg`
+  - where the argument is the path to the `cfg` file
+
+To run python script:
+- go to the `sources` directory
+- run `python run.py 5 ../data/config.cfg`
+  - where the first argument is the number of runs you want to run the program
+  - the second argument is the path to the `cfg` file
 
 ### Important!
 
