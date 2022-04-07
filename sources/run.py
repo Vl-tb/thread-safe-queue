@@ -3,7 +3,6 @@
 import subprocess
 import sys
 import os
-import platform
 import configparser as cp
 
 PROGRAM_PATH = os.path.join("..", "bin", "word_counter")
@@ -36,7 +35,7 @@ if __name__ == "__main__":
     out_by_a = parser.get("section", "out_by_a").split('"')[1]
     out_by_n = parser.get("section", "out_by_n").split('"')[1]
 
-    number_of_words = {}
+    all_results = set()
     args = [PROGRAM_PATH, config_file]
     min_time = float("inf")
     for i in range(number_of_runs):
@@ -44,7 +43,7 @@ if __name__ == "__main__":
         process.wait()
         (output, error) = process.communicate()
         print(output)
-        total_time = int(list(str(output)[2:-3].split('='))[1])
+        total_time = int(str(output)[2:-3].split('\n')[0].split('=')[1])
         exit_code = process.wait()
 
         if exit_code != 0:
@@ -58,6 +57,10 @@ if __name__ == "__main__":
         if len(numerical) != len(alphabetical) or len(numerical.intersection(alphabetical)) != len(numerical):
             print(f"Results in output files at run {i} do not coincide", file=sys.stderr)
             exit(4)
+        if len(numerical) != len(all_results) or len(all_results.intersection(numerical)) != len(numerical):
+            print(f"The result at run {i} does not coincide with the previous run.", file=sys.stderr)
+            exit(4)
+        all_results = numerical
 
     print("All results are the same")
     print(min_time)
