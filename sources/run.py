@@ -6,18 +6,21 @@ import os
 import configparser as cp
 
 PROGRAM_PATH = os.path.join("..", "bin", "word_counter")
+INVALID_NUMBER_OF_ARGUMENTS = 1
+WRONG_ARGUMENT = 2
+RESULT_DIFFER = 3
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Not enough arguments", file=sys.stderr)
-        exit(1)
+        exit(INVALID_NUMBER_OF_ARGUMENTS)
 
     number_of_runs = 1
     try:
         number_of_runs = int(sys.argv[1])
     except:
         print("Specify the number of runs", file=sys.stderr)
-        exit(2)
+        exit(WRONG_ARGUMENT)
 
     try:
         config_file = sys.argv[2]
@@ -26,7 +29,7 @@ if __name__ == "__main__":
             config_file = "index.cfg"
         else:
             print("Specify the name of config file", file=sys.stderr)
-            exit(2)
+            exit(WRONG_ARGUMENT)
 
     parser = cp.ConfigParser()
     with open(config_file, 'r') as f:
@@ -42,8 +45,7 @@ if __name__ == "__main__":
         process = subprocess.Popen(args, stdout=subprocess.PIPE)
         process.wait()
         (output, error) = process.communicate()
-        print(output)
-        total_time = int(str(output)[2:-3].split('\n')[0].split('=')[1])
+        total_time = int(str(output)[2:-3].split('\\n')[0].split('=')[1])
         exit_code = process.wait()
 
         if exit_code != 0:
@@ -56,11 +58,10 @@ if __name__ == "__main__":
             alphabetical = set(f.readlines())
         if len(numerical) != len(alphabetical) or len(numerical.intersection(alphabetical)) != len(numerical):
             print(f"Results in output files at run {i} do not coincide", file=sys.stderr)
-            exit(4)
+            exit(RESULT_DIFFER)
         if len(numerical) != len(all_results) or len(all_results.intersection(numerical)) != len(numerical):
             print(f"The result at run {i} does not coincide with the previous run.", file=sys.stderr)
-            exit(4)
-        all_results = numerical
+            exit(RESULT_DIFFER)
 
     print("All results are the same")
     print(min_time)
