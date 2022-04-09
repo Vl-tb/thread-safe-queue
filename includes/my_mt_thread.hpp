@@ -1,10 +1,12 @@
 #ifndef MY_MT_THREAD_HPP
 #define MY_MT_THREAD_HPP
 
+#include "iostream"
 #include <deque>
 #include <mutex>
 #include <condition_variable>
 #include <map>
+#include "../includes/files.h"
 
 
 template<typename T>
@@ -38,13 +40,13 @@ public:
             //cv_m.wait(lock, [this](){ return !que_m.empty(); }); те саме
 
             a = que_m.front();
-            que_m.pop_front() ;
+            que_m.pop_front();
         }
         cv_m_full.notify_one();
         return a;
     }
 
-    T front() {
+    const T front() {
         T a;
         std::unique_lock<std::mutex> lock(m_member);
         while(que_m.empty()) {
@@ -60,6 +62,11 @@ public:
         std::lock_guard<std::mutex> lock(m_member);
         return que_m.size();
     }
+
+    void print_que() {
+        for (auto it = que_m.begin(); it != que_m.end(); ++it)
+                std::cout << "'" << *it  <<"', " << std::endl;
+        }
 
 private:
     std::deque<T> que_m;
@@ -86,19 +93,20 @@ public:
         map_mult.insert({p.first, p.second});
     }
 
+    void merge(const std::pair<K, V> &elem) {
+        std::lock_guard<std::mutex> lock(m_m);
+        if (key_check(map_mult, elem.first)) {
+            map_mult[elem.first]+= elem.second;
+        }
+        else{
+            map_mult.insert(std::pair<std::string, int>(elem.first, 1));
+        }
+    }
+
     const std::map<K, V>& cast_to_map() {
         return map_mult;
     }
 
-    bool has_key(K key) {
-        std::map<std::string,int>::const_iterator itr = map_mult.find(key);
-        if(itr!=map_mult.end()){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
 
 private:
     std::map<K, V> map_mult;

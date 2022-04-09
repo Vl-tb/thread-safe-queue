@@ -34,7 +34,7 @@ void read_files(std::deque<std::string>* deque){
         }
         catch (...) {
             std::cerr << "Помилка читання вхідного файлу!" << std::endl;
-            exit(TXT_FILE_READ_ERROR);
+//            exit(TXT_FILE_READ_ERROR);
         }
     }
 }

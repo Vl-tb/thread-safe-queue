@@ -9,7 +9,6 @@
 
 
 #include "../includes/parser.h"
-#include "../includes/my_mt_thread.hpp"
 #include <boost/program_options.hpp>
 
 namespace sys = std::filesystem;
