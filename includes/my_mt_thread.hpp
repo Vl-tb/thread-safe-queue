@@ -99,11 +99,11 @@ public:
             map_mult[elem.first]+= elem.second;
         }
         else{
-            map_mult.insert(std::pair<std::string, int>(elem.first, 1));
+            map_mult.emplace(std::pair<std::string, int>(elem.first, 1));
         }
     }
 
-    const std::map<K, V>& cast_to_map() {
+    std::map<K, V> cast_to_map() {
         return map_mult;
     }
 

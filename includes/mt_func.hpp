@@ -14,8 +14,8 @@
 
 namespace sys = std::filesystem;
 
-void read_files_mt(my_mt_thread<std::string>* file_deque, my_mt_thread<std::string>* string_deque);
+void read_files_mt(my_mt_thread<std::string>* file_deque, my_mt_thread<std::pair<std::string, std::string>>* string_deque);
 void extract_files_mt(const sys::path& path, my_mt_thread<std::string>* deque);
-void index_work_mt(my_mt_thread<std::string>* deque,  my_mt_map<std::string, int>* global);
+void index_work_mt(my_mt_thread<std::pair<std::string, std::string>>* deque,  my_mt_map<std::string, int>* global);
 void merge_mt(const std::map<std::string, int>& local, my_mt_map<std::string, int>* global);
 #endif // MT_FUNC_HPP
