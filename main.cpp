@@ -15,6 +15,7 @@
 
 namespace sys = std::filesystem;
 
+
 int main(int argc, char* argv[]) {
     if (argc != 2) {
         std::cerr << "Невірна кількість аргументів!" << std::endl;
@@ -81,8 +82,8 @@ int main(int argc, char* argv[]) {
     }
     else{
         std::vector<std::thread> index_worker;
-        my_mt_thread<std::string> filequ(1000);
-        my_mt_thread<std::string> stringqu(200);
+        my_mt_thread<sys::path> filequ(1000);
+        my_mt_thread<std::pair<sys::path, std::string>> stringqu(200);
         my_mt_map<std::string, int> global;
 
         find_start = get_current_time_fenced();
@@ -93,7 +94,7 @@ int main(int argc, char* argv[]) {
         std::thread file_reader_worker(read_files_mt, &filequ, &stringqu);
 
         for (size_t i = 0; i < index_threads; i++) {
-            index_worker.push_back(std::thread(index_work_mt, &stringqu, &global));
+            index_worker.emplace_back(std::thread(index_work_mt, &stringqu, &global));
         }
 
         file_searcher_worker.join();
@@ -102,10 +103,8 @@ int main(int argc, char* argv[]) {
         read_end = get_current_time_fenced();
 
 
-        for (std::thread & th : index_worker)
-        {
-            if (th.joinable())
-                th.join();
+        for (std::thread & th : index_worker) {
+            th.join();
         }
 
         total_end = get_current_time_fenced();

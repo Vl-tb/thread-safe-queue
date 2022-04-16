@@ -222,6 +222,30 @@ sources/files.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/word_counter.dir/build.make CMakeFiles/word_counter.dir/sources/files.cpp.s
 .PHONY : sources/files.cpp.s
 
+sources/mt_func.o: sources/mt_func.cpp.o
+.PHONY : sources/mt_func.o
+
+# target to build an object file
+sources/mt_func.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/word_counter.dir/build.make CMakeFiles/word_counter.dir/sources/mt_func.cpp.o
+.PHONY : sources/mt_func.cpp.o
+
+sources/mt_func.i: sources/mt_func.cpp.i
+.PHONY : sources/mt_func.i
+
+# target to preprocess a source file
+sources/mt_func.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/word_counter.dir/build.make CMakeFiles/word_counter.dir/sources/mt_func.cpp.i
+.PHONY : sources/mt_func.cpp.i
+
+sources/mt_func.s: sources/mt_func.cpp.s
+.PHONY : sources/mt_func.s
+
+# target to generate assembly for a file
+sources/mt_func.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/word_counter.dir/build.make CMakeFiles/word_counter.dir/sources/mt_func.cpp.s
+.PHONY : sources/mt_func.cpp.s
+
 sources/parser.o: sources/parser.cpp.o
 .PHONY : sources/parser.o
 
@@ -265,6 +289,9 @@ help:
 	@echo "... sources/files.o"
 	@echo "... sources/files.i"
 	@echo "... sources/files.s"
+	@echo "... sources/mt_func.o"
+	@echo "... sources/mt_func.i"
+	@echo "... sources/mt_func.s"
 	@echo "... sources/parser.o"
 	@echo "... sources/parser.i"
 	@echo "... sources/parser.s"

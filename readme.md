@@ -1,38 +1,44 @@
-# Lab work 3: INDEXING
-#### Authors:
-- [Vladyslav Protsenko](https://github.com/Vl-tb)
-- [Alina Muliak](https://github.com/alinamuliak)
-- [Ilya Konstantynenko](https://github.com/Ikonsty)
+<mark>Template for your README. Remove all unused parts and instructions</mark>
 
+# Lab work <mark>NUMBER</mark>: <mark>SHORT TOPIC</mark>
+Authors (team): <mark>AUTHORS WITH GITHUB LINKS</mark><br>
+Variant: <mark>VARIANT SHOULD BE HERE</mark>
 ## Prerequisites
-- `python3`
-- `boost`
-- `CMake`
+
+<mark>LIST LIBRARIES/TOOLS/OTHER UTILITIES THAT NEED TO BE INSTALLED (E.G. GCC, OPENMP, CMAKE ETC)</mark>
 
 ### Compilation
-Use `compile.sh` script with `-O` argument to compile the program with optimization.
-After the compilation the binary file will be located in the `bin` directory.
+
+<mark>HOW TO COMPILE YOUR PROGRAM? (RECOMMENDED: ./comile.sh)</mark>
+
+### Installation
+
+<mark>DESCRIBE THE INSTALLATION PROCESS (USE ./dependencies FOLDER)</mark>
+
+<mark>Note: For Python scripts, You must add `requirenments.txt` 
+file and add your env to the `.gitignore` file!</mark>
 
 ### Usage
 
-To run the program itself:
-- go to the `bin` directory with the executable `word_counter`
-- run `./word_counter ../data/config.cfg`
-  - where the argument is the path to the `cfg` file
+<mark>PROVIDE AN EXAMPLE OF HOW TO RUN YOUR PROGRAM (IT CAN BE A_flag COMMAND LINE WITH INPUT AND EXPECTED OUTPUT)</mark>
 
-To run python script:
-- go to the `sources` directory
-- run `python run.py 5 ../data/config.cfg`
-  - where the first argument is the number of runs you want to run the program
-  - the second argument is the path to the `cfg` file
+<mark>Note: if your project needs or generates any data, media and so on -- put them
+into the data folder</mark> 
 
 ### Important!
 
 <mark>WHAT ELSE SHOULD WE KNOW ABOUT YOUR WORK? (E.G. KNOWN ISSUES, BUGS, SPECIAL BEHAVIOR ETC)</mark>
 
 ### Results
-### _графіки_:
+
 <mark>DESCRIBE THE RESULTS OF THE WORK YOU DID. WHAT DID YOU LEARN OR FIND INTERESTING?</mark>
 
 # Additional tasks
 <mark>IF APPLICABLE, LIST ALL THE EXTRA FEATURES YOU ADDED. PROVIDE DETAILS<mark>
+
+# ATTENTION!
+  
+Additional tasks not listed in the previous paragraph would not be graded.
+
+Be sure to provide a complete list of authors.
+

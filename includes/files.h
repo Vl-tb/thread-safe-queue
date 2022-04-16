@@ -20,7 +20,7 @@ std::map<std::string, int> split(const std::string* str);
 void merge(const std::map<std::string, int>& local, std::map<std::string, int>* global);
 bool compare(const std::pair<std::string, int>& first, const std::pair<std::string, int>& second, int param);
 std::vector<std::pair<std::string, int>> sort_by_func(const std::map<std::string, int>& words, int method);
-void write(const std::string& name, const std::vector<std::pair<std::string, int>>& words);
+void write(const sys::path& name, const std::vector<std::pair<std::string, int>>& words);
 
 inline std::chrono::high_resolution_clock::time_point get_current_time_fenced()
 {

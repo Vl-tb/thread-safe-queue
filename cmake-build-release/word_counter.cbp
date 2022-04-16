@@ -5,7 +5,7 @@
 		<Option title="word_counter"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\cmake\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\opt\;CMake Files\..\..\..\..\..\opt\homebrew\;CMake Files\..\..\..\..\..\opt\homebrew\lib\;CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\;CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\Boost-1.76.0\;CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\boost_headers-1.76.0\;CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\boost_program_options-1.76.0\;CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\boost_system-1.76.0\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\cmake\;CMake Files\cmake\extra\;CMake Files\cmake\extra\sanitizers\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\opt\;CMake Files\..\..\..\..\..\opt\homebrew\;CMake Files\..\..\..\..\..\opt\homebrew\lib\;CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\;CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\Boost-1.76.0\;CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\boost_headers-1.76.0\;CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\boost_program_options-1.76.0\;CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\boost_system-1.76.0\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release"/>
@@ -136,6 +136,12 @@
 		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/includes/files.h">
 			<Option target="word_counter"/>
 		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/includes/mt_func.hpp">
+			<Option target="word_counter"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/includes/my_mt_thread.hpp">
+			<Option target="word_counter"/>
+		</Unit>
 		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/includes/parser.h">
 			<Option target="word_counter"/>
 		</Unit>
@@ -143,6 +149,9 @@
 			<Option target="word_counter"/>
 		</Unit>
 		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/sources/files.cpp">
+			<Option target="word_counter"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/sources/mt_func.cpp">
 			<Option target="word_counter"/>
 		</Unit>
 		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/sources/parser.cpp">
@@ -168,6 +177,24 @@
 		</Unit>
 		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake/main-config.cmake">
 			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake/extra/sanitizers/FindASan.cmake">
+			<Option virtualFolder="CMake Files\cmake\extra\sanitizers\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake/extra/sanitizers/FindMSan.cmake">
+			<Option virtualFolder="CMake Files\cmake\extra\sanitizers\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake/extra/sanitizers/FindSanitizers.cmake">
+			<Option virtualFolder="CMake Files\cmake\extra\sanitizers\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake/extra/sanitizers/FindTSan.cmake">
+			<Option virtualFolder="CMake Files\cmake\extra\sanitizers\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake/extra/sanitizers/FindUBSan.cmake">
+			<Option virtualFolder="CMake Files\cmake\extra\sanitizers\"/>
+		</Unit>
+		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake/extra/sanitizers/sanitize-helpers.cmake">
+			<Option virtualFolder="CMake Files\cmake\extra\sanitizers\"/>
 		</Unit>
 		<Unit filename="/Users/vladprotsenko/Documents/ACS/thread-safe-queue/../../../../../opt/homebrew/lib/cmake/BoostDetectToolset-1.76.0.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\opt\homebrew\lib\cmake\"/>

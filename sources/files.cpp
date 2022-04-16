@@ -11,9 +11,9 @@
 namespace sys = std::filesystem;
 
 
-void extract_files(const sys::path& path, std::deque<std::string>* deque){        //
+void extract_files(const sys::path& path, std::deque<std::string>* deque){
     for (const auto & file : sys::recursive_directory_iterator(path)) {
-        if (file.path().extension().string() == ".txt"){
+        if (file.path().extension().string() == ".txt" && (sys::file_size(file.path())) > 1) {
             deque->push_back(file.path().string());
         }
     }
@@ -40,23 +40,13 @@ void read_files(std::deque<std::string>* deque){
 }
 
 
-bool key_check(const std::map<std::string,int> &map, const std::string& el){
-    std::map<std::string,int>::const_iterator itr = map.find(el);
-    if(itr!=map.end()){
-        return true;
-    }
-    else{
-        return false;
-    }
-}
-
 
 std::map<std::string, int> split(const std::string* str){
     unsigned long last = 0;
     std::map<std::string, int> words;
 
     for (unsigned long i=0; i<str->size(); ++i){
-        if ((isspace(str->at(i)) or (i == str->size()-1 and not isspace(str->at(i)))) and (not isspace(str->at(last)))){
+        if ((isspace(str->at(i)) || (i == str->size()-1 && !isspace(str->at(i)))) && (!isspace(str->at(last)))){
             std::string word;
             if (i != str->size()-1){
                 word = str->substr(last, i-last);
@@ -66,12 +56,7 @@ std::map<std::string, int> split(const std::string* str){
             }
             std::transform(word.begin(), word.end(), word.begin(),
                            [](unsigned char c){ return std::tolower(c); });
-            if (key_check(words, word)){
-                ++words[word];
-            }
-            else{
-                words.insert(std::pair<std::string, int>(word, 1));
-            }
+            ++words[word];
             last = i;
         }
         else if (not isspace(str->at(i)) and isspace(str->at(last))){
@@ -84,7 +69,8 @@ std::map<std::string, int> split(const std::string* str){
 void merge(const std::map<std::string, int>& local, std::map<std::string, int>* global){
     std::map<std::string, int>& global_ref = *global;
     for (auto const& elem: local){
-        if (key_check(global_ref, elem.first)){
+        auto itr = global_ref.find(elem.first);
+        if (itr!=global_ref.end()){
             global_ref[elem.first]+= elem.second;
         }
         else{
@@ -109,13 +95,13 @@ bool compare(const std::pair<std::string, int>& first, const std::pair<std::stri
 std::vector<std::pair<std::string, int>> sort_by_func(const std::map<std::string, int>& words, int method){
     std::vector<std::pair<std::string, int>> sorted;
     for (auto &pair : words){
-        sorted.push_back(pair);
+        sorted.emplace_back(pair);
     }
     std::sort(sorted.begin(), sorted.end(), [method](auto i, auto j){return compare(i, j, method);} );
     return sorted;
 }
 
-void write(const std::string& name, const std::vector<std::pair<std::string, int>>& words){
+void write(const sys::path& name, const std::vector<std::pair<std::string, int>>& words){
     std::ofstream file_1(name);
     if (!file_1) {
         std::cerr << "Не вдалося відкрити файл для запису результату!" << std::endl;

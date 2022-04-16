@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.15)
 #! Check every comment after the "#!"
 
 #! CHANGE YOUR PROJECT NAME
-#  It is used as your project's main executable name. 
+#  It is used as your project's main executable name.
 set(PROJECT_NAME word_counter)
 project(${PROJECT_NAME} C CXX) # project(${PROJECT_NAME} C CXX ASM)
 
@@ -17,9 +17,9 @@ set(CMAKE_CXX_STANDARD 17)
 
 #! It is a good practice to set "WARNINGS_AS_ERRORS" ON,
 #  but sometimes it creates too much trouble, so default is OFF.
-set(WARNINGS_AS_ERRORS OFF)
+set(WARNINGS_AS_ERRORS ON)
 
-#! Always use PVS Studio while developing. 
+#! Always use PVS Studio while developing.
 set(ENABLE_PVS_STUDIO OFF)
 
 #! Select appropriate sanitizers.
@@ -32,19 +32,19 @@ set(ENABLE_PVS_STUDIO OFF)
 #  Info: https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html
 set(ENABLE_UBSan OFF)
 #! AddressSanitizer -- detects use after free or after scope exit,
-#  memory overflows and leaks.  
+#  memory overflows and leaks.
 #  Info: https://github.com/google/sanitizers/wiki/AddressSanitizer
 set(ENABLE_ASAN OFF)
 #! ThreadSanitizer -- detects data races.
-set(ENABLE_TSan OFF)
-#! MemorySanitizer detects uninitialized memory reads 
+set(ENABLE_TSan ON)
+#! MemorySanitizer detects uninitialized memory reads
 #  Info: https://github.com/google/sanitizers/wiki/MemorySanitizer
 set(ENABLE_MSAN OFF)
 
 
 #! Be default -- build release version if not specified otherwise.
 if (NOT CMAKE_BUILD_TYPE)
-	set(CMAKE_BUILD_TYPE Release)
+        set(CMAKE_BUILD_TYPE Release)
 endif ()
 
 # Warnings as errors should be imported here -- do not move this line
@@ -55,7 +55,7 @@ include(cmake/CompilerWarnings.cmake)
 ##########################################################
 
 #! Project main executable source compilation
-add_executable(${PROJECT_NAME} main.cpp sources/files.cpp includes/files.h sources/parser.cpp includes/parser.h includes/errors.h)
+add_executable(${PROJECT_NAME} main.cpp sources/files.cpp includes/my_mt_thread.hpp includes/mt_func.hpp sources/mt_func.cpp includes/files.h sources/parser.cpp includes/parser.h includes/errors.h)
 
 #! Put path to your project headers
 target_include_directories(${PROJECT_NAME} PRIVATE options_parser)
@@ -68,14 +68,14 @@ target_link_libraries(${PROJECT_NAME} Threads::Threads)
 target_include_directories(${PROJECT_NAME} PRIVATE ${Boost_INCLUDE_DIR})
 target_link_libraries(${PROJECT_NAME} Boost::program_options Boost::system)
 
-						
+
 ##########################################################
-# Fixed CMakeLists.txt part 
+# Fixed CMakeLists.txt part
 ##########################################################
 
 INSTALL(PROGRAMS
-		$<TARGET_FILE:${PROJECT_NAME}>	# ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}
-		DESTINATION bin)
+                $<TARGET_FILE:${PROJECT_NAME}>	# ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}
+                DESTINATION bin)
 
 # Define ALL_TARGETS variable to use in PVS and Sanitizers
 set(ALL_TARGETS ${PROJECT_NAME})

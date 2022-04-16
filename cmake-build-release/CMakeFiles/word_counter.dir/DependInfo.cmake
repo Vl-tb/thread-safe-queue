@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/vladprotsenko/Documents/ACS/thread-safe-queue/main.cpp" "/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/CMakeFiles/word_counter.dir/main.cpp.o"
   "/Users/vladprotsenko/Documents/ACS/thread-safe-queue/sources/files.cpp" "/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/CMakeFiles/word_counter.dir/sources/files.cpp.o"
+  "/Users/vladprotsenko/Documents/ACS/thread-safe-queue/sources/mt_func.cpp" "/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/CMakeFiles/word_counter.dir/sources/mt_func.cpp.o"
   "/Users/vladprotsenko/Documents/ACS/thread-safe-queue/sources/parser.cpp" "/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/CMakeFiles/word_counter.dir/sources/parser.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
