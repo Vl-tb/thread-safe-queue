@@ -10,17 +10,18 @@
 
 #include "../includes/parser.h"
 #include <boost/program_options.hpp>
+#include <boost/locale.hpp>
 
 namespace sys = std::filesystem;
 
 void extract_files(const sys::path& path, std::deque<std::string>* deque);
 void read_files(std::deque<std::string>* deque);
 bool key_check(const std::map<std::string,int>& map, const std::string& el);
-std::map<std::string, int> split(const std::string* str);
+std::map<std::string, int> split(const std::string* str, const std::locale& loc);
 void merge(const std::map<std::string, int>& local, std::map<std::string, int>* global);
 bool compare(const std::pair<std::string, int>& first, const std::pair<std::string, int>& second, int param);
 std::vector<std::pair<std::string, int>> sort_by_func(const std::map<std::string, int>& words, int method);
-void write(const std::string& name, const std::vector<std::pair<std::string, int>>& words);
+void write(const sys::path& name, const std::vector<std::pair<std::string, int>>& words);
 
 inline std::chrono::high_resolution_clock::time_point get_current_time_fenced()
 {

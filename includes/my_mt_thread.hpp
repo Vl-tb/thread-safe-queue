@@ -6,7 +6,7 @@
 #include <mutex>
 #include <condition_variable>
 #include <map>
-#include "../includes/files.h"
+//#include "../includes/files.h"
 
 
 template<typename T>
@@ -46,7 +46,7 @@ public:
         return a;
     }
 
-    const T front() {
+    T front() {
         T a;
         std::unique_lock<std::mutex> lock(m_member);
         while(que_m.empty()) {
@@ -93,15 +93,19 @@ public:
         map_mult.insert({p.first, p.second});
     }
 
-    void merge(const std::pair<K, V> &elem) {
+    void merge(const std::map<K, V>& local) {
         std::lock_guard<std::mutex> lock(m_m);
-        if (key_check(map_mult, elem.first)) {
-            map_mult[elem.first]+= elem.second;
-        }
-        else{
-            map_mult.emplace(std::pair<std::string, int>(elem.first, 1));
+        for (auto const& el: local){
+            auto itr = map_mult.find(el.first);
+            if (itr!=map_mult.end()) {
+                map_mult[el.first]+= el.second;
+            }
+            else{
+                map_mult.emplace(std::pair<std::string, int>(el.first, 1));
+            }
         }
     }
+
 
     std::map<K, V> cast_to_map() {
         return map_mult;

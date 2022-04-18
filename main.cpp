@@ -9,11 +9,13 @@
 #include "includes/files.h"
 #include "includes/mt_func.hpp"
 #include "includes/parser.h"
+#include <boost/locale.hpp>
 
 #include "includes/my_mt_thread.hpp"
 
 
 namespace sys = std::filesystem;
+
 
 int main(int argc, char* argv[]) {
     if (argc != 2) {
@@ -26,6 +28,21 @@ int main(int argc, char* argv[]) {
     sys::path out_path_a = obj.out_by_a;
     sys::path out_path_n = obj.out_by_n;
     size_t index_threads = obj.indexing_threads;
+
+    if (!std::filesystem::exists(indir)) {
+        std::cerr << "Input dir does not exist" << std::endl;
+        exit(INDEXING_PATH_ERROR);
+    }
+     if (!std::filesystem::exists(out_path_a.parent_path())) {
+         std::cerr << "Output path 'a' does not exist" << std::endl;
+         exit(RESULT_FILE_OPEN_ERROR);
+     }
+     if (!std::filesystem::exists(out_path_n.parent_path())) {
+         std::cerr << "Output path 'n' does not exist" << std::endl;
+         exit(RESULT_FILE_OPEN_ERROR);
+     }
+
+    std::locale loc = boost::locale::generator().generate("en_US.UTF-8");
 
     std::chrono::high_resolution_clock::time_point find_start;
     std::chrono::high_resolution_clock::time_point find_end;
@@ -61,7 +78,7 @@ int main(int argc, char* argv[]) {
         int amount = deque.size();
 
         for(int i=0; i<amount; ++i){
-            std::map<std::string, int> local = split(&deque.front());
+            std::map<std::string, int> local = split(&deque.front(), loc);
 
             merge(local, &global);
             deque.pop_front();
@@ -81,9 +98,10 @@ int main(int argc, char* argv[]) {
     }
     else{
         std::vector<std::thread> index_worker;
-        my_mt_thread<std::string> filequ(1000);
-        my_mt_thread<std::string> stringqu(200);
+        my_mt_thread<sys::path> filequ(1000);
+        my_mt_thread<std::pair<sys::path, std::string>> stringqu(200);
         my_mt_map<std::string, int> global;
+
 
         find_start = get_current_time_fenced();
         std::thread file_searcher_worker(extract_files_mt, indir, &filequ);
@@ -93,7 +111,7 @@ int main(int argc, char* argv[]) {
         std::thread file_reader_worker(read_files_mt, &filequ, &stringqu);
 
         for (size_t i = 0; i < index_threads; i++) {
-            index_worker.push_back(std::thread(index_work_mt, &stringqu, &global));
+            index_worker.emplace_back(std::thread(index_work_mt, &stringqu, &global, loc));
         }
 
         file_searcher_worker.join();
@@ -102,10 +120,8 @@ int main(int argc, char* argv[]) {
         read_end = get_current_time_fenced();
 
 
-        for (std::thread & th : index_worker)
-        {
-            if (th.joinable())
-                th.join();
+        for (std::thread & th : index_worker) {
+            th.join();
         }
 
         total_end = get_current_time_fenced();
