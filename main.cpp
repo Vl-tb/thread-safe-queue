@@ -29,11 +29,14 @@ int main(int argc, char* argv[]) {
     sys::path out_path_n = obj.out_by_n;
     size_t index_threads = obj.indexing_threads;
     size_t merging_threads = obj.merging_threads;
-//    int max_file_size = obj.max_file_size;
-//    int file_names_queue_max_size = obj.file_names_queue_max_size;
-//    int raw_files_queue_size = obj.raw_files_queue_size;
-//    int dictionaries_queue_size = obj.dictionaries_queue_size;
-//    std::cout << merging_threads << max_file_size << dictionaries_queue_size << std::endl;
+
+    #ifdef DEBUG
+    int max_file_size = obj.max_file_size;
+    int file_names_queue_max_size = obj.file_names_queue_max_size;
+    int raw_files_queue_size = obj.raw_files_queue_size;
+    int dictionaries_queue_size = obj.dictionaries_queue_size;
+    std::cout << merging_threads << max_file_size << dictionaries_queue_size << std::endl;
+    #endif
 
     if (!std::filesystem::exists(indir)) {
         std::cerr << "Input dir does not exist" << std::endl;
@@ -60,35 +63,45 @@ int main(int argc, char* argv[]) {
     std::chrono::high_resolution_clock::time_point total_end;
 
     if (index_threads == 0){
-        std::deque<std::string>* chr;
-        std::deque<std::string> deque;
-        chr = &deque;
+        std::deque<sys::path> deque;
+        std::deque<std::pair<sys::path, std::string>> text_deque;
 
         find_start = get_current_time_fenced();
         try{
-            extract_files(indir, chr);
+            extract_files(indir, &deque);
         }
         catch(...){
             std::cerr << "Не знайдено файл чи директорію за заданим шляхом!" << std::endl;
-            exit(INDEXING_PATH_ERROR);
         }
         find_end = get_current_time_fenced();
 
         total_start = get_current_time_fenced();
 
         read_start = get_current_time_fenced();
-        read_files(chr);
+        read_files(&deque, &text_deque);
         read_end = get_current_time_fenced();
 
         std::map<std::string, int> global;
-        int amount = deque.size();
 
-        for(int i=0; i<amount; ++i){
-            std::map<std::string, int> local = split(&deque.front(), loc);
+
+        for(auto& elem : text_deque){
+            std::map<std::string, int> local = split(&elem.second, loc);
+
+            #ifdef DEBUG
+            std::fstream outfile;
+               outfile.open("./results/maps_0.txt", std::fstream::app);
+            outfile << "FILE: " << elem.first << std::endl;
+            for(const auto& e : local)
+            {
+               outfile << e.first << " " << e.second << std::endl;
+            }
+            outfile << "END OF FILE " << elem.first << std::endl << std::endl;
+            outfile.close();
+            #endif
 
             merge(local, &global);
-            deque.pop_front();
         }
+
         total_end = get_current_time_fenced();
 
         std::vector<std::pair<std::string, int>> sorted;
@@ -118,7 +131,7 @@ int main(int argc, char* argv[]) {
         std::thread file_reader_worker(read_files_mt, &filequ, &stringqu);
 
         for (size_t i = 0; i < index_threads; i++) {
-            index_worker.emplace_back(std::thread(index_work_mt, &stringqu, &dictionaries));
+            index_worker.emplace_back(std::thread(index_work_mt, &stringqu, &dictionaries, loc));
         }
 
         for (size_t i = 0; i < merging_threads; i++) {

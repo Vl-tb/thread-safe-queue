@@ -14,9 +14,8 @@
 
 namespace sys = std::filesystem;
 
-void extract_files(const sys::path& path, std::deque<std::string>* deque);
-void read_files(std::deque<std::string>* deque);
-bool key_check(const std::map<std::string,int>& map, const std::string& el);
+void extract_files(const sys::path& path, std::deque<sys::path>* deque);
+void read_files(std::deque<sys::path>* deque, std::deque<std::pair<sys::path, std::string>>* text_deque);
 std::map<std::string, int> split(const std::string* str, const std::locale& loc);
 void merge(const std::map<std::string, int>& local, std::map<std::string, int>* global);
 bool compare(const std::pair<std::string, int>& first, const std::pair<std::string, int>& second, int param);

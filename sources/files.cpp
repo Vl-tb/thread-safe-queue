@@ -12,26 +12,25 @@
 namespace sys = std::filesystem;
 
 
-void extract_files(const sys::path& path, std::deque<std::string>* deque){
+void extract_files(const sys::path& path, std::deque<sys::path>* deque){
     for (const auto & file : sys::recursive_directory_iterator(path)) {
-        if (file.path().extension().string() == ".txt" && (sys::file_size(file.path())) > 1) {
+        if (file.path().extension().string() == ".txt" && (sys::file_size(file.path()) > 1) && (sys::file_size(file.path()) < 1000000)) {
             deque->push_back(file.path().string());
         }
     }
 }
 
-void read_files(std::deque<std::string>* deque){
-    for (unsigned long i=0; i<deque->size(); ++i){
+void read_files(std::deque<sys::path>* deque, std::deque<std::pair<sys::path, std::string>>* text_deque){
+    for (auto& elem : *deque){
         try{
-            std::ifstream file(deque->front());
+            std::ifstream file(elem);
             std::string str;
             if(file) {
                 std::ostringstream ss;
                 ss << file.rdbuf();
                 str = ss.str();
             }
-            deque->push_back(str);
-            deque->pop_front();
+            text_deque->push_back(std::pair(elem, str));
         }
         catch (...) {
             std::cerr << "Помилка читання вхідного файлу!" << std::endl;
@@ -59,13 +58,7 @@ std::map<std::string, int> split(const std::string* str, const std::locale& loc)
 void merge(const std::map<std::string, int>& local, std::map<std::string, int>* global){
     std::map<std::string, int>& global_ref = *global;
     for (auto const& elem: local){
-        auto itr = global_ref.find(elem.first);
-        if (itr!=global_ref.end()){
-            global_ref[elem.first]+= elem.second;
-        }
-        else{
-            global_ref.insert(std::pair<std::string, int>(elem.first, 1));
-        }
+        global_ref[elem.first] += elem.second;
     }
 }
 
