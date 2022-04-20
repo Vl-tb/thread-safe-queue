@@ -1,7 +1,7 @@
-D:/semester2.2/ACS/thread-safe-queue/cmake-build-debug/CMakeFiles/word_counter.dir
-D:/semester2.2/ACS/thread-safe-queue/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/semester2.2/ACS/thread-safe-queue/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-D:/semester2.2/ACS/thread-safe-queue/cmake-build-debug/CMakeFiles/list_install_components.dir
-D:/semester2.2/ACS/thread-safe-queue/cmake-build-debug/CMakeFiles/install.dir
-D:/semester2.2/ACS/thread-safe-queue/cmake-build-debug/CMakeFiles/install/local.dir
-D:/semester2.2/ACS/thread-safe-queue/cmake-build-debug/CMakeFiles/install/strip.dir
+/Users/vladprotsenko/Documents/ACS/thread-safe-queue_0/cmake-build-debug/CMakeFiles/install/local.dir
+/Users/vladprotsenko/Documents/ACS/thread-safe-queue_0/cmake-build-debug/CMakeFiles/install/strip.dir
+/Users/vladprotsenko/Documents/ACS/thread-safe-queue_0/cmake-build-debug/CMakeFiles/install.dir
+/Users/vladprotsenko/Documents/ACS/thread-safe-queue_0/cmake-build-debug/CMakeFiles/list_install_components.dir
+/Users/vladprotsenko/Documents/ACS/thread-safe-queue_0/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/vladprotsenko/Documents/ACS/thread-safe-queue_0/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/vladprotsenko/Documents/ACS/thread-safe-queue_0/cmake-build-debug/CMakeFiles/lab4_words_count_2.dir

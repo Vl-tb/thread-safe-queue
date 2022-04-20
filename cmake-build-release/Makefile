@@ -57,10 +57,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/vladprotsenko/Documents/ACS/thread-safe-queue
+CMAKE_SOURCE_DIR = /Users/vladprotsenko/Documents/ACS/thread-safe-queue_0
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release
+CMAKE_BINARY_DIR = /Users/vladprotsenko/Documents/ACS/thread-safe-queue_0/cmake-build-release
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -132,9 +132,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/CMakeFiles /Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/vladprotsenko/Documents/ACS/thread-safe-queue_0/cmake-build-release/CMakeFiles /Users/vladprotsenko/Documents/ACS/thread-safe-queue_0/cmake-build-release//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/vladprotsenko/Documents/ACS/thread-safe-queue_0/cmake-build-release/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -162,24 +162,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named word_counter
+# Target rules for targets named lab4_words_count_2
 
 # Build rule for target.
-word_counter: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 word_counter
-.PHONY : word_counter
+lab4_words_count_2: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lab4_words_count_2
+.PHONY : lab4_words_count_2
 
 # fast build rule for target.
-word_counter/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/word_counter.dir/build.make CMakeFiles/word_counter.dir/build
-.PHONY : word_counter/fast
+lab4_words_count_2/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab4_words_count_2.dir/build.make CMakeFiles/lab4_words_count_2.dir/build
+.PHONY : lab4_words_count_2/fast
 
 main.o: main.cpp.o
 .PHONY : main.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/word_counter.dir/build.make CMakeFiles/word_counter.dir/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab4_words_count_2.dir/build.make CMakeFiles/lab4_words_count_2.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -187,7 +187,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/word_counter.dir/build.make CMakeFiles/word_counter.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab4_words_count_2.dir/build.make CMakeFiles/lab4_words_count_2.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -195,7 +195,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/word_counter.dir/build.make CMakeFiles/word_counter.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab4_words_count_2.dir/build.make CMakeFiles/lab4_words_count_2.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 sources/files.o: sources/files.cpp.o
@@ -203,7 +203,7 @@ sources/files.o: sources/files.cpp.o
 
 # target to build an object file
 sources/files.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/word_counter.dir/build.make CMakeFiles/word_counter.dir/sources/files.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab4_words_count_2.dir/build.make CMakeFiles/lab4_words_count_2.dir/sources/files.cpp.o
 .PHONY : sources/files.cpp.o
 
 sources/files.i: sources/files.cpp.i
@@ -211,7 +211,7 @@ sources/files.i: sources/files.cpp.i
 
 # target to preprocess a source file
 sources/files.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/word_counter.dir/build.make CMakeFiles/word_counter.dir/sources/files.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab4_words_count_2.dir/build.make CMakeFiles/lab4_words_count_2.dir/sources/files.cpp.i
 .PHONY : sources/files.cpp.i
 
 sources/files.s: sources/files.cpp.s
@@ -219,15 +219,39 @@ sources/files.s: sources/files.cpp.s
 
 # target to generate assembly for a file
 sources/files.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/word_counter.dir/build.make CMakeFiles/word_counter.dir/sources/files.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab4_words_count_2.dir/build.make CMakeFiles/lab4_words_count_2.dir/sources/files.cpp.s
 .PHONY : sources/files.cpp.s
+
+sources/mt_func.o: sources/mt_func.cpp.o
+.PHONY : sources/mt_func.o
+
+# target to build an object file
+sources/mt_func.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab4_words_count_2.dir/build.make CMakeFiles/lab4_words_count_2.dir/sources/mt_func.cpp.o
+.PHONY : sources/mt_func.cpp.o
+
+sources/mt_func.i: sources/mt_func.cpp.i
+.PHONY : sources/mt_func.i
+
+# target to preprocess a source file
+sources/mt_func.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab4_words_count_2.dir/build.make CMakeFiles/lab4_words_count_2.dir/sources/mt_func.cpp.i
+.PHONY : sources/mt_func.cpp.i
+
+sources/mt_func.s: sources/mt_func.cpp.s
+.PHONY : sources/mt_func.s
+
+# target to generate assembly for a file
+sources/mt_func.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab4_words_count_2.dir/build.make CMakeFiles/lab4_words_count_2.dir/sources/mt_func.cpp.s
+.PHONY : sources/mt_func.cpp.s
 
 sources/parser.o: sources/parser.cpp.o
 .PHONY : sources/parser.o
 
 # target to build an object file
 sources/parser.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/word_counter.dir/build.make CMakeFiles/word_counter.dir/sources/parser.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab4_words_count_2.dir/build.make CMakeFiles/lab4_words_count_2.dir/sources/parser.cpp.o
 .PHONY : sources/parser.cpp.o
 
 sources/parser.i: sources/parser.cpp.i
@@ -235,7 +259,7 @@ sources/parser.i: sources/parser.cpp.i
 
 # target to preprocess a source file
 sources/parser.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/word_counter.dir/build.make CMakeFiles/word_counter.dir/sources/parser.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab4_words_count_2.dir/build.make CMakeFiles/lab4_words_count_2.dir/sources/parser.cpp.i
 .PHONY : sources/parser.cpp.i
 
 sources/parser.s: sources/parser.cpp.s
@@ -243,7 +267,7 @@ sources/parser.s: sources/parser.cpp.s
 
 # target to generate assembly for a file
 sources/parser.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/word_counter.dir/build.make CMakeFiles/word_counter.dir/sources/parser.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab4_words_count_2.dir/build.make CMakeFiles/lab4_words_count_2.dir/sources/parser.cpp.s
 .PHONY : sources/parser.cpp.s
 
 # Help Target
@@ -258,13 +282,16 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... word_counter"
+	@echo "... lab4_words_count_2"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
 	@echo "... sources/files.o"
 	@echo "... sources/files.i"
 	@echo "... sources/files.s"
+	@echo "... sources/mt_func.o"
+	@echo "... sources/mt_func.i"
+	@echo "... sources/mt_func.s"
 	@echo "... sources/parser.o"
 	@echo "... sources/parser.i"
 	@echo "... sources/parser.s"

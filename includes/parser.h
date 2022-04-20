@@ -23,6 +23,11 @@ public:
     std::filesystem::path out_by_a;
     std::filesystem::path out_by_n;
     int indexing_threads;
+    int merging_threads;
+//    int max_file_size;
+//    int file_names_queue_max_size;
+//    int raw_files_queue_size;
+//    int dictionaries_queue_size;
 };
 
 #endif // QUEUE_PARSER_H

@@ -30,6 +30,17 @@ public:
         cv_m_empty.notify_one();
     }
 
+    void push_front(const T& a) {
+        {
+            std::unique_lock<std::mutex> lock(m_member);
+            while(que_m.size() >= max_size) {
+                cv_m_full.wait(lock);
+            }
+            que_m.push_front(a);
+        }
+        cv_m_empty.notify_one();
+    }
+
     T pop_front() {
         T a;
         {
@@ -68,12 +79,23 @@ public:
                 std::cout << "'" << *it  <<"', " << std::endl;
         }
 
+    bool get_status() {
+        std::lock_guard<std::mutex> lock(m_member);
+        return closed;
+    }
+
+    void set_status(bool status) {
+        std::lock_guard<std::mutex> lock(m_member);
+        closed = status;
+    }
+
 private:
     std::deque<T> que_m;
     mutable std::mutex m_member;
     std::condition_variable cv_m_empty;
     std::condition_variable cv_m_full;
     size_t max_size;
+    bool closed = false;
 };
 
 

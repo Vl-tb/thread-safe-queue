@@ -39,18 +39,41 @@ void read_files_mt(my_mt_thread<sys::path>* file_deque, my_mt_thread<std::pair<s
 }
 
 
-void index_work_mt(my_mt_thread<std::pair<sys::path, std::string>>* deque,  my_mt_map<std::string, int>* global, const std::locale& loc) {
+void index_work_mt(my_mt_thread<std::pair<sys::path, std::string>>* deque,  my_mt_thread<std::map<std::string, int>>* dictionaries, const std::locale& loc) {
 
     while(true) {
         auto elem = deque->pop_front();
         if(elem.second.empty()) {
-            deque->push_back(std::make_pair(elem.first, ""));
+            if (!dictionaries->get_status()) {
+                std::map<std::string, int> pill;
+                pill["./"];
+                dictionaries->push_back(pill);
+                dictionaries->set_status(true);
+            }
+            deque->push_front(std::make_pair(elem.first, ""));
             return;
         }
         const std::string &temp_front = elem.second;
         std::map<std::string, int> local = split(&temp_front, loc);
+        dictionaries->push_front(local);
+    }
+}
 
-        my_mt_map<std::string, int>& global_ref = *global;
-        global_ref.merge(local);
+void merge_work_mt(my_mt_thread<std::map<std::string, int>>* dictionaries) {
+    while (true) {
+        auto elem_1 = dictionaries->pop_front();
+        if (elem_1["./"] == 0) {
+            dictionaries->push_back(elem_1);
+            return;
+        }
+        auto elem_2 = dictionaries->pop_front();
+        if (elem_2["./"] == 0) {
+            dictionaries->push_back(elem_2);
+            return;
+        }
+        std::map<std::string, int> *elem_2p;
+        elem_2p = &elem_2;
+        merge(elem_1, elem_2p);
+        dictionaries->push_front(elem_2);
     }
 }

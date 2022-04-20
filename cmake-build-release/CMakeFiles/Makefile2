@@ -54,16 +54,16 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/vladprotsenko/Documents/ACS/thread-safe-queue
+CMAKE_SOURCE_DIR = /Users/vladprotsenko/Documents/ACS/thread-safe-queue_0
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release
+CMAKE_BINARY_DIR = /Users/vladprotsenko/Documents/ACS/thread-safe-queue_0/cmake-build-release
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/word_counter.dir/all
+all: CMakeFiles/lab4_words_count_2.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -71,34 +71,34 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/word_counter.dir/clean
+clean: CMakeFiles/lab4_words_count_2.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/word_counter.dir
+# Target rules for target CMakeFiles/lab4_words_count_2.dir
 
 # All Build rule for target.
-CMakeFiles/word_counter.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/word_counter.dir/build.make CMakeFiles/word_counter.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/word_counter.dir/build.make CMakeFiles/word_counter.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/CMakeFiles --progress-num=1,2,3,4 "Built target word_counter"
-.PHONY : CMakeFiles/word_counter.dir/all
+CMakeFiles/lab4_words_count_2.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab4_words_count_2.dir/build.make CMakeFiles/lab4_words_count_2.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab4_words_count_2.dir/build.make CMakeFiles/lab4_words_count_2.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/vladprotsenko/Documents/ACS/thread-safe-queue_0/cmake-build-release/CMakeFiles --progress-num=1,2,3,4,5 "Built target lab4_words_count_2"
+.PHONY : CMakeFiles/lab4_words_count_2.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/word_counter.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/CMakeFiles 4
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/word_counter.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release/CMakeFiles 0
-.PHONY : CMakeFiles/word_counter.dir/rule
+CMakeFiles/lab4_words_count_2.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/vladprotsenko/Documents/ACS/thread-safe-queue_0/cmake-build-release/CMakeFiles 5
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/lab4_words_count_2.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/vladprotsenko/Documents/ACS/thread-safe-queue_0/cmake-build-release/CMakeFiles 0
+.PHONY : CMakeFiles/lab4_words_count_2.dir/rule
 
 # Convenience name for target.
-word_counter: CMakeFiles/word_counter.dir/rule
-.PHONY : word_counter
+lab4_words_count_2: CMakeFiles/lab4_words_count_2.dir/rule
+.PHONY : lab4_words_count_2
 
 # clean rule for target.
-CMakeFiles/word_counter.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/word_counter.dir/build.make CMakeFiles/word_counter.dir/clean
-.PHONY : CMakeFiles/word_counter.dir/clean
+CMakeFiles/lab4_words_count_2.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab4_words_count_2.dir/build.make CMakeFiles/lab4_words_count_2.dir/clean
+.PHONY : CMakeFiles/lab4_words_count_2.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

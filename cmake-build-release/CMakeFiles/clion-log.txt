@@ -1,4 +1,4 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /Users/vladprotsenko/Documents/ACS/thread-safe-queue
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /Users/vladprotsenko/Documents/ACS/thread-safe-queue_0
 -- The C compiler identification is AppleClang 12.0.5.12050022
 -- The CXX compiler identification is AppleClang 12.0.5.12050022
 -- Detecting C compiler ABI info
@@ -11,14 +11,12 @@
 -- Check for working CXX compiler: /Library/Developer/CommandLineTools/usr/bin/c++ - skipped
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
--- Found Boost: /opt/homebrew/lib/cmake/Boost-1.76.0/BoostConfig.cmake (found suitable version "1.76.0", minimum required is "1.71.0") found components: program_options system 
--- Looking for pthread.h
--- Looking for pthread.h - found
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+- UCU.APPS.CS: 'Warnings as errors' enabled in CMakeLists.txt
+-- Found Boost: /opt/homebrew/lib/cmake/Boost-1.76.0/BoostConfig.cmake (found suitable version "1.76.0", minimum required is "1.71.0") found components: program_options system locale 
 -- Found Threads: TRUE  
+- UCU.APPS.CS: 'Warnings as errors' enabled in CMakeLists.txt
 
 - UCU.APPS.CS: Consider enabling PVS-Studio in CMakeLists.txt by 'set(ENABLE_PVS_STUDIO ON)' flag or use Windows PVS Studio GUI.
 -- Configuring done
 -- Generating done
--- Build files have been written to: /Users/vladprotsenko/Documents/ACS/thread-safe-queue/cmake-build-release
+-- Build files have been written to: /Users/vladprotsenko/Documents/ACS/thread-safe-queue_0/cmake-build-release

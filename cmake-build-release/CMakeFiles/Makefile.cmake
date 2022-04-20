@@ -25,6 +25,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.20/Modules/CMakeExtraGeneratorDetermineCompilerMacrosAndIncludeDirs.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.20/Modules/CMakeFindBinUtils.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.20/Modules/CMakeFindCodeBlocks.cmake"
+  "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.20/Modules/CMakeFindDependencyMacro.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.20/Modules/CMakeGenericSystem.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.20/Modules/CMakeInitializeConfigs.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.20/Modules/CMakeLanguageInformation.cmake"
@@ -121,8 +122,20 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/opt/homebrew/lib/cmake/Boost-1.76.0/BoostConfig.cmake"
   "/opt/homebrew/lib/cmake/Boost-1.76.0/BoostConfigVersion.cmake"
   "/opt/homebrew/lib/cmake/BoostDetectToolset-1.76.0.cmake"
+  "/opt/homebrew/lib/cmake/boost_chrono-1.76.0/boost_chrono-config-version.cmake"
+  "/opt/homebrew/lib/cmake/boost_chrono-1.76.0/boost_chrono-config.cmake"
+  "/opt/homebrew/lib/cmake/boost_chrono-1.76.0/libboost_chrono-variant-mt-shared.cmake"
+  "/opt/homebrew/lib/cmake/boost_chrono-1.76.0/libboost_chrono-variant-mt-static.cmake"
+  "/opt/homebrew/lib/cmake/boost_chrono-1.76.0/libboost_chrono-variant-shared.cmake"
+  "/opt/homebrew/lib/cmake/boost_chrono-1.76.0/libboost_chrono-variant-static.cmake"
   "/opt/homebrew/lib/cmake/boost_headers-1.76.0/boost_headers-config-version.cmake"
   "/opt/homebrew/lib/cmake/boost_headers-1.76.0/boost_headers-config.cmake"
+  "/opt/homebrew/lib/cmake/boost_locale-1.76.0/boost_locale-config-version.cmake"
+  "/opt/homebrew/lib/cmake/boost_locale-1.76.0/boost_locale-config.cmake"
+  "/opt/homebrew/lib/cmake/boost_locale-1.76.0/libboost_locale-variant-mt-shared.cmake"
+  "/opt/homebrew/lib/cmake/boost_locale-1.76.0/libboost_locale-variant-mt-static.cmake"
+  "/opt/homebrew/lib/cmake/boost_locale-1.76.0/libboost_locale-variant-shared.cmake"
+  "/opt/homebrew/lib/cmake/boost_locale-1.76.0/libboost_locale-variant-static.cmake"
   "/opt/homebrew/lib/cmake/boost_program_options-1.76.0/boost_program_options-config-version.cmake"
   "/opt/homebrew/lib/cmake/boost_program_options-1.76.0/boost_program_options-config.cmake"
   "/opt/homebrew/lib/cmake/boost_program_options-1.76.0/libboost_program_options-variant-mt-shared.cmake"
@@ -135,6 +148,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/opt/homebrew/lib/cmake/boost_system-1.76.0/libboost_system-variant-mt-static.cmake"
   "/opt/homebrew/lib/cmake/boost_system-1.76.0/libboost_system-variant-shared.cmake"
   "/opt/homebrew/lib/cmake/boost_system-1.76.0/libboost_system-variant-static.cmake"
+  "/opt/homebrew/lib/cmake/boost_thread-1.76.0/boost_thread-config-version.cmake"
+  "/opt/homebrew/lib/cmake/boost_thread-1.76.0/boost_thread-config.cmake"
+  "/opt/homebrew/lib/cmake/boost_thread-1.76.0/libboost_thread-variant-mt-shared.cmake"
+  "/opt/homebrew/lib/cmake/boost_thread-1.76.0/libboost_thread-variant-mt-static.cmake"
   )
 
 # The corresponding makefile is:
@@ -155,5 +172,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/word_counter.dir/DependInfo.cmake"
+  "CMakeFiles/lab4_words_count_2.dir/DependInfo.cmake"
   )
