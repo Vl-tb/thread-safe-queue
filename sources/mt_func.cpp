@@ -39,11 +39,15 @@ void read_files_mt(my_mt_thread<sys::path>* file_deque, my_mt_thread<std::pair<s
 }
 
 
-void index_work_mt(my_mt_thread<std::pair<sys::path, std::string>>* deque,  my_mt_thread<std::map<std::string, int>>* dictionaries, const std::locale& loc) {
+void index_work_mt(my_mt_thread<std::pair<sys::path, std::string>>* deque,  my_mt_thread<std::map<std::string, int>>* dictionaries, const std::locale& loc, size_t ind_thr) {
 
     while(true) {
         auto elem = deque->pop_front();
         if(elem.second.empty()) {
+            dictionaries->set_counter_inc(1);
+            if (dictionaries->get_counter() == ind_thr) {
+                dictionaries->close();
+            }
             if (!dictionaries->get_status()) {
                 std::map<std::string, int> pill;
                 pill["./"];
@@ -62,18 +66,27 @@ void index_work_mt(my_mt_thread<std::pair<sys::path, std::string>>* deque,  my_m
 void merge_work_mt(my_mt_thread<std::map<std::string, int>>* dictionaries) {
     while (true) {
         auto elem_1 = dictionaries->pop_front();
-        if (elem_1["./"] == 0) {
+        if (elem_1.find("./") != elem_1.end()) {
             dictionaries->push_back(elem_1);
-            return;
+            if (dictionaries->is_closed()) {
+                return;
+            }
         }
-        auto elem_2 = dictionaries->pop_front();
-        if (elem_2["./"] == 0) {
-            dictionaries->push_back(elem_2);
-            return;
+        else {
+            auto elem_2 = dictionaries->pop_front();
+            if (elem_2.find("./") != elem_2.end()) {
+                dictionaries->push_back(elem_2);
+                dictionaries->push_front(elem_1);
+                if (dictionaries->is_closed()) {
+                    return;
+                }
+            }
+            else {
+                std::map<std::string, int> *elem_2p;
+                elem_2p = &elem_2;
+                merge(elem_1, elem_2p);
+                dictionaries->push_front(elem_2);
+            }
         }
-        std::map<std::string, int> *elem_2p;
-        elem_2p = &elem_2;
-        merge(elem_1, elem_2p);
-        dictionaries->push_front(elem_2);
     }
 }

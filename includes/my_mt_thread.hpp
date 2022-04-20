@@ -81,12 +81,30 @@ public:
 
     bool get_status() {
         std::lock_guard<std::mutex> lock(m_member);
-        return closed;
+        return pill;
     }
 
     void set_status(bool status) {
         std::lock_guard<std::mutex> lock(m_member);
-        closed = status;
+        pill = status;
+    }
+
+    size_t get_counter() {
+        std::lock_guard<std::mutex> lock(m_member);
+        return counter;
+    }
+
+    void set_counter_inc(size_t num) {
+        std::lock_guard<std::mutex> lock(m_member);
+        counter += num;
+    }
+
+    void close() {
+        closed = true;
+    }
+
+    bool is_closed() {
+        return closed;
     }
 
 private:
@@ -95,6 +113,8 @@ private:
     std::condition_variable cv_m_empty;
     std::condition_variable cv_m_full;
     size_t max_size;
+    size_t counter = 0;
+    bool pill = false;
     bool closed = false;
 };
 
