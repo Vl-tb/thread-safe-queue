@@ -18,7 +18,6 @@ namespace sys = std::filesystem;
 
 
 int main(int argc, char* argv[]) {
-    std::cout << 6;
     if (argc != 2) {
         std::cerr << "Невірна кількість аргументів!" << std::endl;
         exit(ARGUMENTS_ERROR);
@@ -85,7 +84,8 @@ int main(int argc, char* argv[]) {
         for (auto &elem: text_deque) {
             std::map<std::string, int> local = split(&elem.second, loc);
             dictionaries.push_front(local);
-
+        }
+//        std::cout << dictionaries.get_size() << std::endl;
         if (merging_threads == 0) {
             size_t length = dictionaries.get_size();
             for (size_t i=0; i<length; ++i) {
@@ -105,10 +105,13 @@ int main(int argc, char* argv[]) {
             }
         }
         else {
-            std::vector<std::thread> merging_worker;
+//            std::cout << dictionaries.get_size() << std::endl;
             std::map<std::string, int> pill;
             pill["./"];
             dictionaries.push_back(pill);
+            dictionaries.set_status(true);
+            dictionaries.close();
+            std::vector<std::thread> merging_worker;
 
             for (size_t i = 0; i < merging_threads; i++) {
                 merging_worker.emplace_back(std::thread(merge_work_mt, &dictionaries));
@@ -119,7 +122,6 @@ int main(int argc, char* argv[]) {
             }
             global = dictionaries.pop_front();
             }
-        }
         total_end = get_current_time_fenced();
     }
     else {
@@ -141,6 +143,7 @@ int main(int argc, char* argv[]) {
                                                   static_cast<size_t>(index_threads)));
         }
         if (merging_threads != 0) {
+//            std::cout << dictionaries.get_size() << std::endl;
             std::vector<std::thread> merging_worker;
 
             for (size_t i = 0; i < merging_threads; i++) {
@@ -153,6 +156,9 @@ int main(int argc, char* argv[]) {
             global = dictionaries.pop_front();
         }
         else {
+            for (std::thread &th: index_worker) {
+                th.join();
+            }
             size_t length = dictionaries.get_size();
             for (size_t i = 0; i < length - 1; ++i) {
                 merge(dictionaries.pop_front(), &global);
@@ -163,9 +169,10 @@ int main(int argc, char* argv[]) {
         file_reader_worker.join();
         read_end = get_current_time_fenced();
 
-
-        for (std::thread &th: index_worker) {
-            th.join();
+        if (merging_threads != 0) {
+            for (std::thread &th: index_worker) {
+                th.join();
+            }
         }
 
         total_end = get_current_time_fenced();
