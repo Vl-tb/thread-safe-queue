@@ -6,7 +6,7 @@
 #include <mutex>
 #include <condition_variable>
 #include <map>
-#include "../includes/files.h"
+//#include "../includes/files.h"
 
 
 template<typename T>
@@ -30,6 +30,17 @@ public:
         cv_m_empty.notify_one();
     }
 
+    void push_front(const T& a) {
+        {
+            std::unique_lock<std::mutex> lock(m_member);
+            while(que_m.size() >= max_size) {
+                cv_m_full.wait(lock);
+            }
+            que_m.push_front(a);
+        }
+        cv_m_empty.notify_one();
+    }
+
     T pop_front() {
         T a;
         {
@@ -46,7 +57,7 @@ public:
         return a;
     }
 
-    const T front() {
+    T front() {
         T a;
         std::unique_lock<std::mutex> lock(m_member);
         while(que_m.empty()) {
@@ -68,12 +79,43 @@ public:
                 std::cout << "'" << *it  <<"', " << std::endl;
         }
 
+    bool get_status() {
+        std::lock_guard<std::mutex> lock(m_member);
+        return pill;
+    }
+
+    void set_status(bool status) {
+        std::lock_guard<std::mutex> lock(m_member);
+        pill = status;
+    }
+
+    size_t get_counter() {
+        std::lock_guard<std::mutex> lock(m_member);
+        return counter;
+    }
+
+    void set_counter_inc(size_t num) {
+        std::lock_guard<std::mutex> lock(m_member);
+        counter += num;
+    }
+
+    void close() {
+        closed = true;
+    }
+
+    bool is_closed() {
+        return closed;
+    }
+
 private:
     std::deque<T> que_m;
     mutable std::mutex m_member;
     std::condition_variable cv_m_empty;
     std::condition_variable cv_m_full;
     size_t max_size;
+    size_t counter = 0;
+    bool pill = false;
+    bool closed = false;
 };
 
 
@@ -93,15 +135,19 @@ public:
         map_mult.insert({p.first, p.second});
     }
 
-    void merge(const std::pair<K, V> &elem) {
+    void merge(const std::map<K, V>& local) {
         std::lock_guard<std::mutex> lock(m_m);
-        if (key_check(map_mult, elem.first)) {
-            map_mult[elem.first]+= elem.second;
-        }
-        else{
-            map_mult.emplace(std::pair<std::string, int>(elem.first, 1));
+        for (auto const& el: local){
+            auto itr = map_mult.find(el.first);
+            if (itr!=map_mult.end()) {
+                map_mult[el.first]+= el.second;
+            }
+            else{
+                map_mult.emplace(std::pair<std::string, int>(el.first, 1));
+            }
         }
     }
+
 
     std::map<K, V> cast_to_map() {
         return map_mult;
