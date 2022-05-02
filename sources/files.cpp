@@ -23,36 +23,36 @@ std::string read_binary_file(const sys::path& path) {
 
 
 
-//std::string extract_archive_files(const std::string& file) {
-//    std::vector<std::string> archive_filenames;
-//    struct archive *archive = archive_read_new();
-//    struct archive_entry *entry;
-//    archive_read_support_format_all(archive);
+std::string extract_archive_files(const std::string& file) {
+    std::vector<std::string> archive_filenames;
+    struct archive *archive = archive_read_new();
+    struct archive_entry *entry;
+    archive_read_support_format_all(archive);
 
-//    int result = archive_read_open_memory(archive, file.data(), file.size());
+    int result = archive_read_open_memory(archive, file.data(), file.size());
 
-//    if (result != ARCHIVE_OK) {
-//        std::cerr << "Cannot read archive" << std::endl;
-//        exit(1);
-//    }
-//    std::string all_files_data;
-//    while(archive_read_next_header(archive, &entry) == ARCHIVE_OK) {
-//        if (static_cast<sys::path>(archive_entry_pathname(entry)).extension() == ".txt" &&
-//            archive_entry_size(entry) > 0) {
+    if (result != ARCHIVE_OK) {
+        std::cerr << "Cannot read archive" << std::endl;
+        exit(1);
+    }
+    std::string all_files_data;
+    while(archive_read_next_header(archive, &entry) == ARCHIVE_OK) {
+        if (static_cast<sys::path>(archive_entry_pathname(entry)).extension() == ".txt" &&
+            archive_entry_size(entry) > 0) {
 
-//            char* data = new char[10000000];
-//            archive_read_data(archive, data, archive_entry_size(entry));
-//            all_files_data += data;
-//            delete[](data);
-//        }
-//    }
-//    result = archive_read_free(archive);
-//    if (result != ARCHIVE_OK) {
-//        std::cerr << "Cannot free archive" <<std::endl;
-//        exit(1);
-//    }
-//    return all_files_data;
-//}
+            char* data = new char[10000000];
+            archive_read_data(archive, data, archive_entry_size(entry));
+            all_files_data += data;
+            delete[](data);
+        }
+    }
+    result = archive_read_free(archive);
+    if (result != ARCHIVE_OK) {
+        std::cerr << "Cannot free archive" <<std::endl;
+        exit(1);
+    }
+    return all_files_data;
+}
 
 
 void extract_files(const sys::path& path, std::deque<sys::path>* deque, size_t max_file_size){

@@ -74,8 +74,8 @@ find_package(ICU REQUIRED COMPONENTS uc i18n)
 
 target_link_libraries(${PROJECT_NAME} Threads::Threads)
 target_include_directories(${PROJECT_NAME} PRIVATE ${Boost_INCLUDE_DIR} ${LibArchive_INCLUDE_DIR})
-#target_link_libraries(${PROJECT_NAME} LibArchive)
-target_link_libraries(${PROJECT_NAME} TBB)
+target_link_libraries(${PROJECT_NAME} archive)
+target_link_libraries(${PROJECT_NAME} tbb)
 target_link_libraries(${PROJECT_NAME} Boost::program_options Boost::system Boost::locale)
 
 

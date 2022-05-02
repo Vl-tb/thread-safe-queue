@@ -17,7 +17,7 @@
 namespace sys = std::filesystem;
 
 std::string read_binary_file(const sys::path& path);
-//std::string extract_archive_files(const std::string& file);
+std::string extract_archive_files(const std::string& file);
 void extract_files(const sys::path& path, std::deque<sys::path>* deque, size_t max_file_size);
 void read_files(std::deque<sys::path>* deque, std::deque<std::pair<sys::path, std::string>>* text_deque);
 std::map<std::string, int> split(const std::string* str, const std::locale& loc);

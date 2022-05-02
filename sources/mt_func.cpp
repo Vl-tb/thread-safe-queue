@@ -58,10 +58,10 @@ void index_work_mt(tbb::concurrent_bounded_queue<std::pair<sys::path, std::strin
         if (elem.first.extension().string() == ".txt") {
             local = split(&elem.second, loc);
         }
-//        else if (elem.first.extension().string() == ".zip") {
-//            auto data = extract_archive_files(elem.second);
-//            local = split(&data, loc);
-//        }
+        else if (elem.first.extension().string() == ".zip") {
+            auto data = extract_archive_files(elem.second);
+            local = split(&data, loc);
+        }
         dictionaries->push_front(local);
     }
 }
