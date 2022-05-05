@@ -32,28 +32,15 @@ void read_files_mt(tbb::concurrent_bounded_queue<sys::path>* file_deque, tbb::co
     }
 }
 
-
-void index_work_mt(tbb::concurrent_bounded_queue<std::pair<sys::path, std::string>>* deque,  my_mt_thread<std::map<std::string, int>>* dictionaries, const std::locale& loc, size_t ind_thr) {
+void index_work_mt(tbb::concurrent_bounded_queue<std::pair<sys::path, std::string>>* deque, tbb::concurrent_hash_map<std::string, int>* global, const std::locale& loc) {
 
     while(true) {
         std::pair<sys::path, std::string> elem;
         deque->pop(elem);
         if(elem.second.empty()) {
-            dictionaries->set_counter_inc(1);
-            if (dictionaries->get_counter() == ind_thr) {
-                dictionaries->close();
-            }
-            if (!dictionaries->get_status()) {
-                std::map<std::string, int> pill;
-                pill["./"];
-                dictionaries->push_back(pill);
-                dictionaries->set_status(true);
-            }
             deque->push(std::make_pair(elem.first, ""));
             return;
         }
-//        const std::string &temp_front = elem.second;
-//        std::map<std::string, int> local = split(&temp_front, loc);
         std::map<std::string, int> local;
         if (elem.first.extension().string() == ".txt") {
             local = split(&elem.second, loc);
@@ -62,34 +49,7 @@ void index_work_mt(tbb::concurrent_bounded_queue<std::pair<sys::path, std::strin
             auto data = extract_archive_files(elem.second);
             local = split(&data, loc);
         }
-        dictionaries->push_front(local);
-    }
-}
 
-void merge_work_mt(my_mt_thread<std::map<std::string, int>>* dictionaries) {
-    while (true) {
-        auto elem_1 = dictionaries->pop_front();
-        if (elem_1.find("./") != elem_1.end()) {
-            dictionaries->push_back(elem_1);
-            if (dictionaries->is_closed()) {
-                return;
-            }
-        }
-        else {
-            auto elem_2 = dictionaries->pop_front();
-            if (elem_2.find("./") != elem_2.end()) {
-                dictionaries->push_back(elem_2);
-                dictionaries->push_front(elem_1);
-                if (dictionaries->is_closed()) {
-                    return;
-                }
-            }
-            else {
-                std::map<std::string, int> *elem_2p;
-                elem_2p = &elem_2;
-                merge(elem_1, elem_2p);
-                dictionaries->push_front(elem_2);
-            }
-        }
+//        merge(&global, local);
     }
 }
