@@ -30,11 +30,9 @@ int main(int argc, char* argv[]) {
     sys::path out_path_a = obj.out_by_a;
     sys::path out_path_n = obj.out_by_n;
     size_t index_threads = obj.indexing_threads;
-    size_t merging_threads = obj.merging_threads;
     size_t max_file_size = obj.max_file_size;
     int file_names_queue_max_size = obj.file_names_queue_max_size;
     int raw_files_queue_size = obj.raw_files_queue_size;
-    int dictionaries_queue_size = obj.dictionaries_queue_size;
 
 
     if (!std::filesystem::exists(indir)) {
@@ -61,7 +59,6 @@ int main(int argc, char* argv[]) {
     std::chrono::high_resolution_clock::time_point total_start;
     std::chrono::high_resolution_clock::time_point total_end;
 
-    std::map<std::string, int> global;
 
     if (index_threads == 0) {
         std::deque<sys::path> deque;
@@ -117,7 +114,7 @@ int main(int argc, char* argv[]) {
         tbb::concurrent_bounded_queue<std::pair<sys::path, std::string>> stringqu;
         stringqu.set_capacity(raw_files_queue_size);
 
-        tbb::concurrent_hash_map<std::string, int> global;
+        tbb::concurrent_hash_map<std::string, int> global_mt;
 
         find_start = get_current_time_fenced();
         std::thread file_searcher_worker(extract_files_mt, indir, &filequ, max_file_size);
@@ -127,11 +124,7 @@ int main(int argc, char* argv[]) {
         std::thread file_reader_worker(read_files_mt, &filequ, &stringqu);
 
         for (size_t i = 0; i < index_threads; i++) {
-            index_worker.emplace_back(std::thread(index_work_mt, &stringqu, &global, loc));
-        }
-
-        for (std::thread &th: index_worker) {
-            th.join();
+            index_worker.emplace_back(std::thread(index_work_mt, &stringqu, &global_mt, loc));
         }
 
         file_searcher_worker.join();
@@ -139,18 +132,22 @@ int main(int argc, char* argv[]) {
         file_reader_worker.join();
         read_end = get_current_time_fenced();
 
+        for (std::thread &th: index_worker) {
+            th.join();
+        }
+
         total_end = get_current_time_fenced();
 
-        }
-    std::vector<std::pair<std::string, int>> sorted;
-    std::vector<std::pair<std::string, int>> sorted_1;
-    sorted = sort_by_func(global, 1);
-    sorted_1 = sort_by_func(global, 0);
+        std::vector<std::pair<std::string, int>> sorted;
+        std::vector<std::pair<std::string, int>> sorted_1;
+        sorted = sort_by_func_mt(global_mt, 1);
+        sorted_1 = sort_by_func_mt(global_mt, 0);
 
-    write_start = get_current_time_fenced();
-    write(out_path_a, sorted);
-    write(out_path_n, sorted_1);
-    write_end = get_current_time_fenced();
+        write_start = get_current_time_fenced();
+        write(out_path_a, sorted);
+        write(out_path_n, sorted_1);
+        write_end = get_current_time_fenced();
+    }
 
     std::cout << "Total=" << to_us(total_end - total_start) << std::endl;
     std::cout << "Reading=" << to_us(read_end - read_start) << std::endl;
