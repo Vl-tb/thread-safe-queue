@@ -5,78 +5,90 @@
 #include <deque>
 #include <map>
 #include <algorithm>
+#include <boost/locale.hpp>
 #include "../includes/errors.h"
 #include "../includes/files.h"
 
 namespace sys = std::filesystem;
 
+std::string read_binary_file(const sys::path& path) {
+    std::ifstream raw_file(path, std::ios::binary);
+    auto buffer = [&raw_file]{
+        std::ostringstream ss{};
+        ss << raw_file.rdbuf();
+        return ss.str();
+    }();
+    return buffer;
+}
 
-void extract_files(const sys::path& path, std::deque<std::string>* deque){        //
+
+
+std::string extract_archive_files(const std::string& file) {
+    std::vector<std::string> archive_filenames;
+    struct archive *archive = archive_read_new();
+    struct archive_entry *entry;
+    archive_read_support_format_all(archive);
+
+    int result = archive_read_open_memory(archive, file.data(), file.size());
+
+    if (result != ARCHIVE_OK) {
+        std::cerr << "Cannot read archive" << std::endl;
+        exit(1);
+    }
+    std::string all_files_data;
+    while(archive_read_next_header(archive, &entry) == ARCHIVE_OK) {
+        if (static_cast<sys::path>(archive_entry_pathname(entry)).extension() == ".txt" &&
+            archive_entry_size(entry) > 0) {
+
+            char* data = new char[10000000];
+            archive_read_data(archive, data, archive_entry_size(entry));
+            all_files_data += data;
+            delete[](data);
+        }
+    }
+    result = archive_read_free(archive);
+    if (result != ARCHIVE_OK) {
+        std::cerr << "Cannot free archive" <<std::endl;
+        exit(1);
+    }
+    return all_files_data;
+}
+
+
+void extract_files(const sys::path& path, std::deque<sys::path>* deque, size_t max_file_size){
     for (const auto & file : sys::recursive_directory_iterator(path)) {
-        if (file.path().extension().string() == ".txt"){
+        if ((file.path().extension().string() == ".txt" || file.path().extension().string() == ".zip")
+                && (sys::file_size(file.path()) > 0) && (sys::file_size(file.path()) < max_file_size)) {
             deque->push_back(file.path().string());
         }
     }
 }
 
-void read_files(std::deque<std::string>* deque){
-    for (unsigned long i=0; i<deque->size(); ++i){
+void read_files(std::deque<sys::path>* deque, std::deque<std::pair<sys::path, std::string>>* text_deque){
+    for (auto& elem : *deque){
         try{
-            std::ifstream file(deque->front());
-            std::string str;
-            if(file) {
-                std::ostringstream ss;
-                ss << file.rdbuf();
-                str = ss.str();
-            }
-            deque->push_back(str);
-            deque->pop_front();
+            auto str = read_binary_file(elem);
+            text_deque->push_back(std::pair(elem, str));
         }
         catch (...) {
-            std::cerr << "Помилка читання вхідного файлу!" << std::endl;
-//            exit(TXT_FILE_READ_ERROR);
+            std::cerr << "Cannot read file " << elem << std::endl;
         }
     }
 }
 
 
-bool key_check(const std::map<std::string,int> &map, const std::string& el){
-    std::map<std::string,int>::const_iterator itr = map.find(el);
-    if(itr!=map.end()){
-        return true;
-    }
-    else{
-        return false;
-    }
-}
 
-
-std::map<std::string, int> split(const std::string* str){
-    unsigned long last = 0;
+std::map<std::string, int> split(const std::string* str, const std::locale& loc){
     std::map<std::string, int> words;
 
-    for (unsigned long i=0; i<str->size(); ++i){
-        if ((isspace(str->at(i)) or (i == str->size()-1 and not isspace(str->at(i)))) and (not isspace(str->at(last)))){
-            std::string word;
-            if (i != str->size()-1){
-                word = str->substr(last, i-last);
-            }
-            else{
-                word = str->substr(last, i+1-last);
-            }
-            std::transform(word.begin(), word.end(), word.begin(),
-                           [](unsigned char c){ return std::tolower(c); });
-            if (key_check(words, word)){
-                ++words[word];
-            }
-            else{
-                words.insert(std::pair<std::string, int>(word, 1));
-            }
-            last = i;
+    try {
+        auto normalized_fold_case_str = boost::locale::fold_case(boost::locale::normalize(*str, boost::locale::norm_default, loc), loc);
+        boost::locale::boundary::ssegment_index map(boost::locale::boundary::word, normalized_fold_case_str.begin(), normalized_fold_case_str.end(), boost::locale::boundary::word_letters, loc);
+        for (auto word : map){
+            ++words[word];
         }
-        else if (not isspace(str->at(i)) and isspace(str->at(last))){
-            last = i;
-        }
+    } catch (...) {
+        std::cout << "Unicode crached file" << std::endl;
     }
     return words;
 }
@@ -84,12 +96,7 @@ std::map<std::string, int> split(const std::string* str){
 void merge(const std::map<std::string, int>& local, std::map<std::string, int>* global){
     std::map<std::string, int>& global_ref = *global;
     for (auto const& elem: local){
-        if (key_check(global_ref, elem.first)){
-            global_ref[elem.first]+= elem.second;
-        }
-        else{
-            global_ref.insert(std::pair<std::string, int>(elem.first, 1));
-        }
+        global_ref[elem.first] += elem.second;
     }
 }
 
@@ -109,13 +116,13 @@ bool compare(const std::pair<std::string, int>& first, const std::pair<std::stri
 std::vector<std::pair<std::string, int>> sort_by_func(const std::map<std::string, int>& words, int method){
     std::vector<std::pair<std::string, int>> sorted;
     for (auto &pair : words){
-        sorted.push_back(pair);
+        sorted.emplace_back(pair);
     }
     std::sort(sorted.begin(), sorted.end(), [method](auto i, auto j){return compare(i, j, method);} );
     return sorted;
 }
 
-void write(const std::string& name, const std::vector<std::pair<std::string, int>>& words){
+void write(const sys::path& name, const std::vector<std::pair<std::string, int>>& words){
     std::ofstream file_1(name);
     if (!file_1) {
         std::cerr << "Не вдалося відкрити файл для запису результату!" << std::endl;
