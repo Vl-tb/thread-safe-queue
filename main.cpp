@@ -55,53 +55,98 @@ int main(int argc, char* argv[]) {
     std::chrono::high_resolution_clock::time_point total_start;
     std::chrono::high_resolution_clock::time_point total_end;
 
+
+    std::vector<std::map<std::string, int>> global;
+    std::vector<sys::path> pathes;
+
+    for (const auto & file : sys::recursive_directory_iterator(indir)) {
+        if ((file.path().extension().string() == ".txt" || file.path().extension().string() == ".zip") && (sys::file_size(file.path()) > 1) && (sys::file_size(file.path()) < max_file_size)){ //< 100kb - skip
+            pathes.push_back(file.path().string());
+        }
+    }
+    size_t curr_file = 0, num_of_files = pathes.size();
+
     // typedefs
     typedef std::pair<std::vector<std::pair<std::string, int>>, std::vector<std::pair<std::string, int>>> sorted_v_type;
 
 
-
     // Graph nodes
-    tbb::flow::function_node<sys::path, std::pair<sys::path, std::string>> reader_node(g, 1, [](const sys::path& filename) -> std::pair<sys::path, std::string> {
+    tbb::flow::input_node<sys::path> start_node(g, [&](tbb::flow_control& fc) -> sys::path {
+        if (curr_file < num_of_files) {
+            ++curr_file;
+            return pathes[curr_file];
+        } else {
+            fc.stop();
+            return "";
+        }
+    });
+
+    tbb::flow::limiter_node<sys::path> path_l(g, file_names_queue_max_size);
+
+    tbb::flow::function_node<sys::path, std::pair<sys::path, std::string>> reader_node(g, 1, [&](const sys::path& filename) -> std::pair<sys::path, std::string> {
         try{
             auto str = read_binary_file(filename);
+            path_l.decrementer().try_put(tbb::flow::continue_msg());
             return std::make_pair(filename, str);
         }
         catch (...) {
             std::cout << "Cannot read file " << filename << std::endl;
+            path_l.decrementer().try_put(tbb::flow::continue_msg());
             return std::make_pair(filename, "");
         }
     });
 
-    tbb::flow::function_node<std::pair<sys::path, std::string>, std::map<std::string, int>> indexing_nodes(g, index_threads, [loc](const std::pair<sys::path, std::string>& text_pair) -> std::map<std::string, int> {
+    tbb::flow::limiter_node<std::pair<sys::path, std::string>> text_l(g, raw_files_queue_size);
+
+    tbb::flow::function_node<std::pair<sys::path, std::string>, std::map<std::string, int>> indexing_nodes(g, index_threads, [&](const std::pair<sys::path, std::string>& text_pair) -> std::map<std::string, int> {
 
         if (text_pair.first.extension().string() == ".txt") {
+            text_l.decrementer().try_put(tbb::flow::continue_msg());
             return split(&text_pair.second, loc);
         } else if (text_pair.first.extension().string() == ".zip") {
             auto data = extract_archive_files(text_pair.second);
+            text_l.decrementer().try_put(tbb::flow::continue_msg());
             return split(&data, loc);
         }
+        std::map<std::string, int> mp;
+        mp[""] = 0;
+        text_l.decrementer().try_put(tbb::flow::continue_msg());
+        return mp;
     });
 
-    tbb::flow::function_node<std::map<std::string, int>, std::map<std::string, int>> merging_nodes(g, index_threads, [](std::map<std::string, int> dictionaries) -> std::map<std::string, int> {
+    tbb::flow::limiter_node<std::map<std::string, int>> index_l(g, dictionaries_queue_size);
 
+//    tbb::flow::function_node<std::map<std::string, int>, std::map<std::string, int>> merging_nodes(g, merging_threads, [&](std::map<std::string, int> dictionary) -> std::map<std::string, int> {
+//        index_l.decrementer().try_put(tbb::flow::continue_msg());
+//    });
+    tbb::flow::function_node<std::map<std::string, int>, std::vector<std::map<std::string, int>>> merging_nodes(g, 1, [&](std::map<std::string, int> dictionary) -> std::vector<std::map<std::string, int>> {
+        global.push_back(dictionary);
+        return global;
     });
 
-    tbb::flow::function_node<std::map<std::string, int>, sorted_v_type> sort_node(g, 1, [](std::map<std::string, int> answer) -> sorted_v_type {
+//    tbb::flow::function_node<std::map<std::string, int>, sorted_v_type> sort_node(g, 1, [](std::map<std::string, int> answer) -> sorted_v_type {
 
-    });
+//    });
 
     // Graph edges
-    tbb::flow::make_edge(reader_node, indexing_nodes);
-    tbb::flow::make_edge(indexing_nodes, merging_nodes);
-    tbb::flow::make_edge(merging_nodes, sort_node);
+    tbb::flow::make_edge(start_node, path_l);
+    tbb::flow::make_edge(path_l, reader_node);
+    tbb::flow::make_edge(reader_node, text_l);
+    tbb::flow::make_edge(text_l, indexing_nodes);
+    tbb::flow::make_edge(indexing_nodes, index_l);
+    tbb::flow::make_edge(index_l, merging_nodes);
+//    tbb::flow::make_edge(merging_nodes, sort_node);
 
 
-    // Run graph with first func
-    for (const auto & file : sys::recursive_directory_iterator(indir)) {
-        if ((file.path().extension().string() == ".txt" || file.path().extension().string() == ".zip") && (sys::file_size(file.path()) > 1) && (sys::file_size(file.path()) < max_file_size)){ //< 100kb - skip
-            reader_node.try_put(file.path().string());
+    start_node.activate();
+    g.wait_for_all();
+
+    for(const auto& mp : global)
+    {
+        for(const auto& elem: mp) {
+            std::cout << elem.first << " " << elem.second << std::endl;
         }
     }
-    g.wait_for_all();
     // Save vector into files
 }
+
