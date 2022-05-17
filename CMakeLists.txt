@@ -71,18 +71,26 @@ target_include_directories(${PROJECT_NAME} PRIVATE options_parser)
 #! Add external packages
 # options_parser requires boost::program_options library
 
-find_package(LibArchive REQUIRED)
+if(APPLE)
+        set(LibArchive_INCLUDE_DIR "/opt/homebrew/opt/libarchive/include")
+        set(ICU_INCLUDE_DIR "/opt/homebrew/opt/icu4c/include")
+        set(ICU_LIBRARY "/opt/homebrew/opt/icu4c/lib")
+endif()
+
+
 set (Boost_USE_STATIC_LIBS OFF) # enable dynamic linking
 set (Boost_USE_MULTITHREAD ON)  # enable multithreading
 find_package(Boost 1.71.0 COMPONENTS program_options system locale REQUIRED)
+find_package(LibArchive REQUIRED)
 find_package(Threads REQUIRED)
 find_package(TBB REQUIRED)
 find_package(ICU REQUIRED COMPONENTS uc i18n)
 
 target_link_libraries(${PROJECT_NAME} Threads::Threads)
-target_include_directories(${PROJECT_NAME} PRIVATE ${Boost_INCLUDE_DIR} ${LibArchive_INCLUDE_DIR})
-target_link_libraries(${PROJECT_NAME} archive)
-target_link_libraries(${PROJECT_NAME} tbb)
+target_include_directories(${PROJECT_NAME} PRIVATE ${Boost_INCLUDE_DIR} ${LibArchive_INCLUDE_DIR} ${ICU_INCLUDE_DIRS})
+target_link_libraries(${PROJECT_NAME} LibArchive::LibArchive)
+target_link_libraries(${PROJECT_NAME} ${ICU_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} TBB::tbb)
 target_link_libraries(${PROJECT_NAME} Boost::program_options Boost::system Boost::locale)
 
 

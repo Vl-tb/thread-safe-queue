@@ -1,8 +1,8 @@
-# Install script for directory: D:/semester2.2/ACS/thread-safe-queue
+# Install script for directory: /Users/vladprotsenko/Documents/ACS/temporary/thread-safe-queue
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "D:/semester2.2/ACS/thread-safe-queue")
+  set(CMAKE_INSTALL_PREFIX "/usr/local")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -34,11 +34,11 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "C:/msys64/mingw64/bin/objdump.exe")
+  set(CMAKE_OBJDUMP "/Library/Developer/CommandLineTools/usr/bin/objdump")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE PROGRAM FILES "D:/semester2.2/ACS/thread-safe-queue/cmake-build-debug/word_counter.exe")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE PROGRAM FILES "/Users/vladprotsenko/Documents/ACS/temporary/thread-safe-queue/cmake-build-debug/lab4_words_count_4")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -49,5 +49,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "D:/semester2.2/ACS/thread-safe-queue/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/vladprotsenko/Documents/ACS/temporary/thread-safe-queue/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
