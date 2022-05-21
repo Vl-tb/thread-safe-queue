@@ -136,9 +136,10 @@ int main(int argc, char* argv[]) {
         for (auto& word : local.second) {
             if (!word.first.empty()) {
                 tbb::concurrent_hash_map<std::string, int>::accessor a;
-                global.insert(a, word);
-//                a->second += 1;
+                global.insert(a, word.first);
+                a->second += word.second;
             }
+
         }
         index_l.decrementer().try_put(tbb::flow::continue_msg());
         return 0;
