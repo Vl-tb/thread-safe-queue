@@ -11,6 +11,7 @@
 #include "../includes/parser.h"
 #include <boost/program_options.hpp>
 #include <boost/locale.hpp>
+#include <tbb/concurrent_hash_map.h>
 #include <archive.h>
 #include <archive_entry.h>
 
@@ -23,7 +24,7 @@ void read_files(std::deque<sys::path>* deque, std::deque<std::pair<sys::path, st
 std::map<std::string, int> split(const std::string* str, const std::locale& loc);
 void merge(const std::map<std::string, int>& local, std::map<std::string, int>* global);
 bool compare(const std::pair<std::string, int>& first, const std::pair<std::string, int>& second, int param);
-std::vector<std::pair<std::string, int>> sort_by_func(const std::map<std::string, int>& words, int method);
+std::vector<std::pair<std::string, int>> sort_by_func_mt(const tbb::concurrent_hash_map<std::string, int>& global, int method);
 void write(const sys::path& name, const std::vector<std::pair<std::string, int>>& words);
 
 inline std::chrono::high_resolution_clock::time_point get_current_time_fenced()

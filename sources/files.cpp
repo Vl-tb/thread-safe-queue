@@ -113,10 +113,12 @@ bool compare(const std::pair<std::string, int>& first, const std::pair<std::stri
 }
 
 
-std::vector<std::pair<std::string, int>> sort_by_func(const std::map<std::string, int>& words, int method){
+std::vector<std::pair<std::string, int>> sort_by_func_mt(const tbb::concurrent_hash_map<std::string, int>& global, int method) {
     std::vector<std::pair<std::string, int>> sorted;
-    for (auto &pair : words){
-        sorted.emplace_back(pair);
+    auto r = global.range();
+
+    for (auto i = r.begin(); i != r.end(); i++) {
+        sorted.emplace_back(std::make_pair(i->first, i->second));
     }
     std::sort(sorted.begin(), sorted.end(), [method](auto i, auto j){return compare(i, j, method);} );
     return sorted;
